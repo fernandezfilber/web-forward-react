@@ -1,0 +1,131 @@
+// This is your Prisma schema file
+// Run: npx prisma generate && npx prisma db push
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ── Users ────────────────────────────────────────────────────
+model User {
+  id           String    @id @default(uuid())
+  name         String    @db.VarChar(80)
+  email        String    @unique @db.VarChar(255)
+  passwordHash String?   @map("password_hash") @db.VarChar(255)  // nullable for Google-only users
+  phone        String?   @db.VarChar(20)
+  role         Role      @default(cliente)
+  isActive     Boolean   @default(true) @map("is_active")
+  lastLogin    DateTime? @map("last_login")
+  // OAuth fields
+  googleId     String?   @unique @map("google_id") @db.VarChar(100)
+  avatarUrl    String?   @map("avatar_url") @db.Text
+  provider     String    @default("local") @db.VarChar(20) // "local" | "google"
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  media        Media[]
+  comments     Comment[]
+  ratings      Rating[]
+  activityLogs ActivityLog[]
+
+  @@map("users")
+  @@index([email])
+  @@index([googleId])
+}
+
+enum Role {
+  admin
+  cliente
+}
+
+// ── Media (Gallery) ──────────────────────────────────────────
+model Media {
+  id           String    @id @default(uuid())
+  title        String    @db.VarChar(200)
+  type         MediaType
+  category     String    @default("General") @db.VarChar(50)
+  url          String    @db.Text
+  thumbnailUrl String?   @map("thumbnail_url") @db.Text
+  cloudinaryId String?   @map("cloudinary_id") @db.VarChar(255)
+  isVisible    Boolean   @default(true) @map("is_visible")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  uploadedById String? @map("uploaded_by")
+  uploadedBy   User?   @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+
+  comments Comment[]
+  ratings  Rating[]
+
+  @@map("media")
+  @@index([category])
+  @@index([isVisible])
+}
+
+enum MediaType {
+  image
+  video
+}
+
+// ── Comments ─────────────────────────────────────────────────
+model Comment {
+  id        String        @id @default(uuid())
+  content   String        @db.Text
+  status    CommentStatus @default(pending)
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @updatedAt @map("updated_at")
+
+  userId  String @map("user_id")
+  mediaId String @map("media_id")
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  media Media @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@map("comments")
+  @@index([mediaId])
+  @@index([status])
+}
+
+enum CommentStatus {
+  pending
+  approved
+  rejected
+}
+
+// ── Ratings ──────────────────────────────────────────────────
+model Rating {
+  id        String   @id @default(uuid())
+  stars     Int      @db.TinyInt
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  userId  String @map("user_id")
+  mediaId String @map("media_id")
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  media Media @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, mediaId])
+  @@map("ratings")
+  @@index([mediaId])
+}
+
+// ── Activity Log (auditoría) ─────────────────────────────────
+model ActivityLog {
+  id        String   @id @default(uuid())
+  action    String   @db.VarChar(100)  // "login", "upload_media", "approve_comment", etc.
+  detail    String?  @db.Text
+  ip        String?  @db.VarChar(50)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("activity_logs")
+  @@index([userId])
+  @@index([createdAt])
+}

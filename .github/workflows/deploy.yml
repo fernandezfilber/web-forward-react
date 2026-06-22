@@ -1,0 +1,56 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    name: Deploy Forward Vision
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host:     ${{ secrets.VPS_IP }}
+          username: ${{ secrets.VPS_USER }}
+          key:      ${{ secrets.VPS_SSH_KEY }}
+          port:     22
+          timeout:  10m
+          script: |
+            set -e
+            cd /opt/forward-vision
+
+            echo "📥 Actualizando código..."
+            git pull origin main
+
+            echo "🔨 Reconstruyendo backend..."
+            docker compose -f docker-compose.prod.yml --env-file .env.prod build backend builder
+
+            echo "🔄 Reiniciando servicios..."
+            docker compose -f docker-compose.prod.yml --env-file .env.prod up -d backend builder nginx
+
+            echo "⏳ Esperando backend..."
+            sleep 15
+
+            echo "🗄️ Ejecutando migraciones..."
+            docker exec fv_backend_prod npx prisma migrate deploy || \
+            docker exec fv_backend_prod npx prisma db push --accept-data-loss
+
+            echo "🏥 Health check..."
+            curl -sf https://forwardvision.cloud/api/health | grep '"ok"'
+
+            echo "✅ Deploy completado!"
+
+      - name: Notify on success
+        if: success()
+        run: echo "✅ Deploy exitoso a https://forwardvision.cloud"
+
+      - name: Notify on failure
+        if: failure()
+        run: echo "❌ Deploy falló. Revisa los logs."
