@@ -28,7 +28,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden bg-black"
+      className="relative min-h-screen flex items-center overflow-hidden bg-white"
     >
       {/* Background Image with Futuristic Overlay */}
       <div
@@ -51,14 +51,14 @@ export default function Hero() {
             className="inline-block mb-6"
             variants={itemVariants}
           >
-            <span className="bg-[#ff6b00] text-white text-xs font-black px-4 py-2 rounded-full uppercase tracking-widest shadow-[0_0_15px_rgba(255,107,0,0.4)]">
+            <span className="bg-black text-white text-xs font-black px-4 py-2 rounded-full uppercase tracking-widest shadow-md">
               ¡NUEVOS PLANES GIGA!
             </span>
           </motion.div>
 
           {/* Social Icons */}
           <motion.div
-            className="flex gap-4 mb-8 text-gray-400"
+            className="flex gap-4 mb-8 text-gray-500"
             variants={itemVariants}
           >
             {[
@@ -72,7 +72,7 @@ export default function Hero() {
               <motion.a
                 key={idx}
                 href={social.href}
-                className="w-10 h-10 glass-effect rounded-xl flex items-center justify-center hover:text-cyan-400 transition-all border border-white/5"
+                className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center hover:text-black hover:bg-gray-200 transition-all border border-gray-200"
                 whileHover={{ y: -3, backgroundColor: 'rgba(255,255,255,0.05)' }}
               >
                 {typeof social.icon === 'function' ? <social.icon /> : <social.icon size={20} />}
@@ -82,14 +82,14 @@ export default function Hero() {
 
           {/* Main Heading */}
           <motion.div className="space-y-6" variants={itemVariants}>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-none text-white tracking-tight">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-none text-black tracking-tight">
               Velocidad Giga y <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-magenta-500 neon-text-cyan">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600 drop-shadow-sm">
                 Entretenimiento Total
               </span><br />
               Para Tu Hogar
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl font-light">
+            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-2xl font-light">
               La evolución de la fibra óptica ha llegado. Disfruta de internet simétrico de ultra-velocidad y TV 4K sin interrupciones.
             </p>
           </motion.div>
@@ -103,7 +103,7 @@ export default function Hero() {
               href="https://wa.me/51900970806?text=Hola,%20necesito%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20Forward%20Vision."
               target="_blank"
               rel="noopener noreferrer"
-              className="px-10 py-4 bg-[#00a3ff] text-white rounded-xl font-bold flex items-center gap-3 shadow-[0_0_30px_rgba(0,163,255,0.4)] hover:shadow-[0_0_40px_rgba(0,163,255,0.6)] group"
+              className="px-10 py-4 bg-black text-white rounded-xl font-bold flex items-center gap-3 shadow-lg hover:shadow-xl hover:bg-gray-800 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -115,18 +115,18 @@ export default function Hero() {
 
             <motion.a
               href="/planes"
-              className="px-10 py-4 border-2 border-white/10 text-white rounded-xl font-bold glass-effect hover:bg-white/5 flex items-center gap-2"
+              className="px-10 py-4 border-2 border-gray-200 text-black rounded-xl font-bold bg-white hover:bg-gray-50 hover:border-gray-400 flex items-center gap-2"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               EXPLORAR PLANES
-              <ArrowRight size={20} className="text-cyan-400" />
+              <ArrowRight size={20} className="text-gray-500" />
             </motion.a>
           </motion.div>
 
           {/* Features Grid */}
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-16 border-t border-white/10 mt-16"
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-16 border-t border-gray-200 mt-16"
             variants={itemVariants}
           >
             {[
@@ -136,7 +136,7 @@ export default function Hero() {
               { label: 'SOPORTE AI', value: '24/7' },
             ].map((stat, idx) => (
               <div key={idx}>
-                <p className="text-cyan-400 text-3xl font-black mb-1">{stat.value}</p>
+                <p className="text-black text-3xl font-black mb-1">{stat.value}</p>
                 <p className="text-gray-500 text-xs font-bold tracking-widest uppercase">{stat.label}</p>
               </div>
             ))}
@@ -162,14 +162,14 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
       >
-        <div className="h-24 w-[2px] bg-gradient-to-b from-transparent via-cyan-500 to-magenta-500 relative overflow-hidden">
+        <div className="h-24 w-[2px] bg-gradient-to-b from-transparent via-gray-400 to-gray-800 relative overflow-hidden">
           <motion.div
             className="absolute top-0 left-0 w-full h-1/2 bg-white"
             animate={{ y: ['0%', '200%'] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
           />
         </div>
-        <span className="text-[10px] font-bold tracking-[0.3em] uppercase vertical-text text-gray-500">SCROLL</span>
+        <span className="text-[10px] font-bold tracking-[0.3em] uppercase vertical-text text-gray-400">SCROLL</span>
       </motion.div>
     </section>
   )

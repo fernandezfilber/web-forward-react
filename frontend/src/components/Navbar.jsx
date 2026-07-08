@@ -60,7 +60,7 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-nav py-2' : 'bg-transparent py-4'}`}
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-nav py-2' : 'bg-white/80 py-4'}`}
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -79,19 +79,19 @@ export default function Navbar() {
             {navItems.map(item => (
               <Link key={item.label} to={item.path}
                 className={`text-sm font-bold uppercase tracking-widest transition-all relative group ${
-                  location.pathname === item.path ? 'text-cyan-400' : 'text-gray-400 hover:text-white'
+                  location.pathname === item.path ? 'text-black' : 'text-gray-500 hover:text-black'
                 }`}
               >
                 {item.label}
-                <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${
-                  location.pathname === item.path ? 'w-full' : 'w-0 group-hover:w-full shadow-[0_0_8px_rgba(6,182,212,0.8)]'
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-black transition-all duration-300 ${
+                  location.pathname === item.path ? 'w-full' : 'w-0 group-hover:w-full'
                 }`} />
               </Link>
             ))}
 
             <motion.button
               onClick={handleContactClick}
-              className="px-6 py-2.5 bg-white text-black rounded-lg font-black text-xs uppercase tracking-widest hover:bg-cyan-400 hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+              className="px-6 py-2.5 bg-black text-white rounded-lg font-black text-xs uppercase tracking-widest hover:bg-gray-800 transition-all shadow-md"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -103,12 +103,12 @@ export default function Navbar() {
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setDropdownOpen(p => !p)}
-                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all"
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-100 border border-gray-200 hover:border-gray-400 transition-all"
                 >
-                  <div className="w-7 h-7 rounded-lg bg-cyan-500/30 flex items-center justify-center text-cyan-400 font-black text-xs">
+                  <div className="w-7 h-7 rounded-lg bg-gray-200 flex items-center justify-center text-black font-black text-xs">
                     {user.name?.[0]?.toUpperCase()}
                   </div>
-                  <span className="text-white text-xs font-bold max-w-[100px] truncate">{user.name}</span>
+                  <span className="text-black text-xs font-bold max-w-[100px] truncate">{user.name}</span>
                   <ChevronDown size={14} className={`text-gray-500 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
 
@@ -118,19 +118,19 @@ export default function Navbar() {
                       initial={{ opacity: 0, y: 8, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 8, scale: 0.95 }}
-                      className="absolute right-0 mt-2 w-48 bg-[#0a0f1a] border border-white/10 rounded-2xl overflow-hidden shadow-2xl"
+                      className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-xl"
                     >
                       {isAdmin && (
                         <Link to="/admin" onClick={() => setDropdownOpen(false)}
-                          className="flex items-center gap-2 px-4 py-3 text-sm text-cyan-400 hover:bg-white/5 transition-all font-bold">
+                          className="flex items-center gap-2 px-4 py-3 text-sm text-black hover:bg-gray-100 transition-all font-bold">
                           <Shield size={14} /> Panel Admin
                         </Link>
                       )}
                       <Link to="/perfil" onClick={() => setDropdownOpen(false)}
-                        className="flex items-center gap-2 px-4 py-3 text-sm text-gray-300 hover:bg-white/5 hover:text-white transition-all font-bold">
+                        className="flex items-center gap-2 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-black transition-all font-bold">
                         <User size={14} /> Mi Perfil
                       </Link>
-                      <div className="border-t border-white/5">
+                      <div className="border-t border-gray-100">
                         <button onClick={handleLogout}
                           className="w-full flex items-center gap-2 px-4 py-3 text-sm text-red-400 hover:bg-red-500/10 transition-all font-bold">
                           <LogOut size={14} /> Cerrar Sesión
@@ -145,7 +145,7 @@ export default function Navbar() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-4 py-2.5 border border-white/20 rounded-lg font-black text-xs uppercase tracking-widest text-gray-300 hover:border-cyan-400 hover:text-cyan-400 transition-all"
+                  className="flex items-center gap-2 px-4 py-2.5 border border-gray-300 rounded-lg font-black text-xs uppercase tracking-widest text-gray-700 hover:border-black hover:text-black transition-all"
                 >
                   <LogIn size={14} /> Ingresar
                 </motion.button>
@@ -155,7 +155,7 @@ export default function Navbar() {
 
           {/* Mobile Button */}
           <button onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-xl glass-effect text-white hover:bg-white/10 transition-colors">
+            className="md:hidden p-2 rounded-xl bg-gray-100 text-black hover:bg-gray-200 transition-colors">
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -163,29 +163,29 @@ export default function Navbar() {
         {/* Mobile Menu */}
         <motion.div className="md:hidden overflow-hidden" initial={false}
           animate={{ height: isOpen ? 'auto' : 0 }} transition={{ duration: 0.3 }}>
-          <div className="mt-4 px-2 py-6 space-y-4 glass-effect rounded-2xl border border-white/10">
+          <div className="mt-4 px-2 py-6 space-y-4 bg-white rounded-2xl border border-gray-200 shadow-lg">
             {navItems.map(item => (
               <Link key={item.label} to={item.path} onClick={() => setIsOpen(false)}
                 className={`block w-full text-center px-4 py-3 rounded-xl transition-all font-bold uppercase tracking-widest text-xs ${
                   location.pathname === item.path
-                    ? 'text-cyan-400 bg-white/5'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                    ? 'text-black bg-gray-100'
+                    : 'text-gray-500 hover:text-black hover:bg-gray-50'
                 }`}>{item.label}</Link>
             ))}
             <button onClick={handleContactClick}
-              className="w-full px-4 py-4 bg-cyan-500 text-white rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+              className="w-full px-4 py-4 bg-black text-white rounded-xl font-black text-xs uppercase tracking-widest shadow-md hover:bg-gray-800">
               CONTACTAR AHORA
             </button>
             {user ? (
               <>
                 {isAdmin && (
                   <Link to="/admin" onClick={() => setIsOpen(false)}
-                    className="block text-center px-4 py-3 rounded-xl text-cyan-400 bg-cyan-500/10 font-bold text-xs uppercase tracking-widest">
+                    className="block text-center px-4 py-3 rounded-xl text-black bg-gray-100 font-bold text-xs uppercase tracking-widest">
                     Panel Admin
                   </Link>
                 )}
                 <Link to="/perfil" onClick={() => setIsOpen(false)}
-                  className="block text-center px-4 py-3 rounded-xl border border-white/10 text-gray-300 font-bold text-xs uppercase tracking-widest hover:bg-white/5">
+                  className="block text-center px-4 py-3 rounded-xl border border-gray-200 text-gray-700 font-bold text-xs uppercase tracking-widest hover:bg-gray-50">
                   Mi Perfil
                 </Link>
                 <button onClick={() => { handleLogout(); setIsOpen(false) }}
@@ -195,7 +195,7 @@ export default function Navbar() {
               </>
             ) : (
               <Link to="/login" onClick={() => setIsOpen(false)}
-                className="block text-center px-4 py-3 rounded-xl border border-white/20 text-gray-300 font-bold text-xs uppercase tracking-widest">
+                className="block text-center px-4 py-3 rounded-xl border border-gray-300 text-gray-700 font-bold text-xs uppercase tracking-widest hover:bg-gray-50">
                 Iniciar Sesión
               </Link>
             )}

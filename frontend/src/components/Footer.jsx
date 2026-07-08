@@ -65,9 +65,9 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-[#030712] text-white pt-24 pb-8 border-t border-white/5 relative overflow-hidden">
+    <footer className="bg-white text-black pt-24 pb-8 border-t border-gray-200 relative overflow-hidden">
       {/* Decorative Glow */}
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-900/10 rounded-full blur-[100px] -z-10" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-gray-100 rounded-full blur-[100px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -82,7 +82,7 @@ export default function Footer() {
             <div className="flex items-center mb-6">
               <img src={logo} alt="Forward Vision" className="h-20 w-auto object-contain" />
             </div>
-            <p className="text-gray-400 text-sm font-light leading-relaxed mb-8 max-w-xs">
+            <p className="text-gray-500 text-sm font-light leading-relaxed mb-8 max-w-xs">
               Conectamos hogares con el futuro a través de fibra óptica real y entretenimiento sin límites.
             </p>
             <div className="flex gap-4">
@@ -92,7 +92,7 @@ export default function Footer() {
                   <motion.a
                     key={idx}
                     href={social.href}
-                    className="w-10 h-10 glass-effect hover:bg-cyan-500/20 hover:text-cyan-400 rounded-xl flex items-center justify-center transition-all border border-white/5"
+                    className="w-10 h-10 bg-gray-100 hover:bg-gray-200 hover:text-black rounded-xl flex items-center justify-center transition-all border border-gray-200"
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -106,13 +106,13 @@ export default function Footer() {
           {/* Links */}
           {footerLinks.map((section, idx) => (
             <motion.div key={idx} variants={itemVariants}>
-              <h4 className="font-black text-xs tracking-[0.2em] uppercase text-white mb-6">{section.title}</h4>
+              <h4 className="font-black text-xs tracking-[0.2em] uppercase text-black mb-6">{section.title}</h4>
               <ul className="space-y-4">
                 {section.links.map((link, linkIdx) => (
                   <li key={linkIdx}>
                     <a
                       href={link.href}
-                      className="text-gray-400 hover:text-cyan-400 transition-colors text-sm font-light"
+                      className="text-gray-500 hover:text-black transition-colors text-sm font-light"
                     >
                       {link.label}
                     </a>
@@ -124,24 +124,24 @@ export default function Footer() {
 
           {/* Contact */}
           <motion.div variants={itemVariants} className="md:col-span-1">
-            <h4 className="font-black text-xs tracking-[0.2em] uppercase text-white mb-6">Contacto</h4>
+            <h4 className="font-black text-xs tracking-[0.2em] uppercase text-black mb-6">Contacto</h4>
             <div className="space-y-4">
               <a
                 href="mailto:contacto@forwardvision.com"
-                className="flex items-center space-x-3 text-gray-400 hover:text-cyan-400 transition-colors text-sm font-light"
+                className="flex items-center space-x-3 text-gray-500 hover:text-black transition-colors text-sm font-light"
               >
-                <Mail size={16} className="text-cyan-400" />
+                <Mail size={16} className="text-black" />
                 <span>contacto@forwardvision.com</span>
               </a>
               <a
                 href="tel:+51900970806"
-                className="flex items-center space-x-3 text-gray-400 hover:text-cyan-400 transition-colors text-sm font-light"
+                className="flex items-center space-x-3 text-gray-500 hover:text-black transition-colors text-sm font-light"
               >
-                <Phone size={16} className="text-cyan-400" />
+                <Phone size={16} className="text-black" />
                 <span>+51 900970806</span>
               </a>
-              <div className="flex items-center space-x-3 text-gray-400 text-sm font-light">
-                <MapPin size={16} className="text-cyan-400" />
+              <div className="flex items-center space-x-3 text-gray-500 text-sm font-light">
+                <MapPin size={16} className="text-black" />
                 <span>Lima, Perú</span>
               </div>
             </div>
@@ -149,9 +149,9 @@ export default function Footer() {
         </motion.div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/5 pt-8">
+        <div className="border-t border-gray-200 pt-8">
           <motion.div
-            className="flex flex-col md:flex-row items-center justify-between text-gray-500 text-[10px] font-bold tracking-widest uppercase"
+            className="flex flex-col md:flex-row items-center justify-between text-gray-400 text-[10px] font-bold tracking-widest uppercase"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -161,8 +161,8 @@ export default function Footer() {
               &copy; {currentYear} Forward Vision Technology. All rights reserved.
             </p>
             <div className="flex gap-8 mt-4 md:mt-0">
-              <a href="/privacidad" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="/terminos" className="hover:text-white transition-colors">Terms of Service</a>
+              <a href="/privacidad" className="hover:text-black transition-colors">Privacy Policy</a>
+              <a href="/terminos" className="hover:text-black transition-colors">Terms of Service</a>
             </div>
           </motion.div>
         </div>
