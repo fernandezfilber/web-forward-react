@@ -1,5 +1,6 @@
 import React, { Suspense, lazy, useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 
 // Auth
 import { AuthProvider }  from './context/AuthContext'
@@ -10,6 +11,7 @@ import ErrorBoundary     from './components/ErrorBoundary'
 import Navbar         from './components/Navbar'
 import ChatbotWidget  from './components/ChatbotWidget'
 import WhatsAppWidget from './components/WhatsAppWidget'
+import FloatingPromoBanner from './components/FloatingPromoBanner'
 import Footer         from './components/Footer'
 
 // Public Pages (eager — main bundle)
@@ -41,11 +43,42 @@ function ScrollToTop() {
   return null
 }
 
+const seoByPath = {
+  '/': { title: 'Forward Vision | Internet Fibra Óptica + Cable', description: 'Contrata internet de fibra óptica simétrica, TV digital y planes Internet + Cable para tu hogar con Forward Vision.' },
+  '/planes': { title: 'Planes de Internet Fibra Óptica | Forward Vision', description: 'Compara planes de internet fibra óptica desde 250 Mbps hasta 1 Giga, con TV digital y soporte para tu hogar.' },
+  '/cobertura': { title: 'Cobertura de Internet Fibra Óptica | Forward Vision', description: 'Consulta la cobertura de internet fibra óptica Forward Vision y verifica la disponibilidad en tu dirección.' },
+  '/nosotros': { title: 'Nosotros | Forward Vision', description: 'Conoce a Forward Vision, proveedor de internet fibra óptica y entretenimiento digital en Lima Este.' },
+  '/soporte': { title: 'Soporte de Internet y Cable | Forward Vision', description: 'Encuentra ayuda y soporte técnico para tus servicios de internet fibra óptica y TV digital Forward Vision.' },
+  '/galeria': { title: 'Galería | Forward Vision', description: 'Explora la galería de Forward Vision y conoce nuestra tecnología de conectividad y entretenimiento.' },
+  '/testimonios': { title: 'Testimonios de Clientes | Forward Vision', description: 'Conoce las experiencias de clientes que disfrutan internet fibra óptica y TV digital con Forward Vision.' },
+  '/privacidad': { title: 'Política de Privacidad | Forward Vision', description: 'Consulta la política de privacidad y protección de datos personales de Forward Vision.' },
+  '/terminos': { title: 'Términos y Condiciones | Forward Vision', description: 'Consulta los términos y condiciones de contratación de los servicios Forward Vision.' },
+  '/contrato': { title: 'Contrato de Servicios | Forward Vision', description: 'Consulta el contrato estándar de los servicios de internet fibra óptica y TV digital Forward Vision.' },
+}
+
+function RouteSeo() {
+  const { pathname } = useLocation()
+  const seo = seoByPath[pathname]
+
+  if (!seo) return null
+
+  return (
+    <Helmet>
+      <title>{seo.title}</title>
+      <meta name="description" content={seo.description} />
+      <link rel="canonical" href={`https://forwardvision.cloud${pathname}`} />
+      <meta property="og:title" content={seo.title} />
+      <meta property="og:description" content={seo.description} />
+      <meta property="og:type" content="website" />
+    </Helmet>
+  )
+}
+
 // Loading fallback for lazy admin pages
 function AdminLoader() {
   return (
-    <div className="min-h-screen bg-[#030712] flex items-center justify-center">
-      <div className="w-10 h-10 border-4 border-cyan-400/20 border-t-cyan-400 rounded-full animate-spin" />
+    <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="w-10 h-10 border-4 border-purple-200 border-t-[#3C0061] rounded-full animate-spin" />
     </div>
   )
 }
@@ -53,16 +86,13 @@ function AdminLoader() {
 // Shared wrapper for public pages (Navbar + Footer + background)
 function WithNav({ children }) {
   return (
-    <div className="min-h-screen bg-[#030712] relative">
+    <div className="min-h-screen bg-white relative">
       <Navbar />
       {children}
+      <FloatingPromoBanner />
       <WhatsAppWidget />
       <ChatbotWidget />
       <Footer />
-      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-5 animate-blob" />
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-5 animate-blob animation-delay-2000" />
-      </div>
     </div>
   )
 }
@@ -72,6 +102,7 @@ function App() {
     <ErrorBoundary>
       <AuthProvider>
         <ScrollToTop />
+        <RouteSeo />
         <Routes>
           {/* Standalone (no Navbar) */}
           <Route path="/login"         element={<Login />} />

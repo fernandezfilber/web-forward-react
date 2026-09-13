@@ -43,7 +43,7 @@ export default function ContactForm() {
   ]
 
   return (
-    <section id="contact" className="py-32 px-4 bg-[#030712] relative overflow-hidden">
+    <section id="contact" className="py-32 px-4 bg-[#030712] text-white relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 blur-[120px] -z-0" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-magenta-500/5 blur-[120px] -z-0" />
@@ -123,7 +123,7 @@ export default function ContactForm() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Ej: Juan Pérez"
-                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl outline-none focus:border-cyan-500/50 transition-all"
+                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder:text-gray-500 outline-none focus:border-cyan-500/50 transition-all"
                   />
                 </div>
                 <div className="space-y-2">
@@ -134,7 +134,7 @@ export default function ContactForm() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="juan@ejemplo.com"
-                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl outline-none focus:border-cyan-500/50 transition-all"
+                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder:text-gray-500 outline-none focus:border-cyan-500/50 transition-all"
                   />
                 </div>
               </div>
@@ -147,7 +147,7 @@ export default function ContactForm() {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="+51 900 000 000"
-                  className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl outline-none focus:border-cyan-500/50 transition-all"
+                  className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder:text-gray-500 outline-none focus:border-cyan-500/50 transition-all"
                 />
               </div>
 
@@ -159,7 +159,7 @@ export default function ContactForm() {
                   onChange={handleChange}
                   placeholder="¿En qué podemos ayudarte?"
                   rows={5}
-                  className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl outline-none focus:border-cyan-500/50 transition-all resize-none"
+                  className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder:text-gray-500 outline-none focus:border-cyan-500/50 transition-all resize-none"
                 />
               </div>
 

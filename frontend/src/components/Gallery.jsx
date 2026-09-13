@@ -13,15 +13,22 @@ export default function Gallery() {
     const fetchGallery = async () => {
       try {
         const { data } = await api.get('/media?limit=10')
-        setItems(data.items)
+        setItems(data.items?.length ? data.items : getLocalGalleryItems())
       } catch (err) {
         console.error('Error fetching gallery:', err)
+        setItems(getLocalGalleryItems())
       } finally {
         setLoading(false)
       }
     }
     fetchGallery()
   }, [])
+
+  const getLocalGalleryItems = () => [
+    { id: 'local-logo', type: 'image', url: '/logo.png', title: 'Forward Vision', category: 'Conectividad' },
+    { id: 'local-icon', type: 'image', url: '/icono.png', title: 'Tecnología Forward', category: 'Tecnología' },
+    { id: 'local-logo-detail', type: 'image', url: '/logo.png', title: 'Experiencia Giga', category: 'Experiencia' },
+  ]
 
   const radius = window.innerWidth > 768 ? 600 : 300
   const angleStep = items.length > 0 ? 360 / items.length : 0

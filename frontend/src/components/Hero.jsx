@@ -1,176 +1,99 @@
-import React from 'react'
+﻿import React from 'react'
 import { motion } from 'framer-motion'
-import { Play, ArrowRight, Facebook } from 'lucide-react'
-import ThreeDLogo from './ThreeDLogo'
-import logo from '../assets/logo.png'
+import { ArrowRight, PhoneCall } from 'lucide-react'
+
+const WHATSAPP = 'https://wa.me/51900970806?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20planes%20de%20Forward%20Vision.'
+
+const stats = [
+  { value: '100%', label: 'Fibra Real' },
+  { value: '1 Gbps', label: 'Velocidad Max.' },
+  { value: '+100', label: 'Canales HD' },
+  { value: '24/7', label: 'Soporte' },
+]
+
+const fadeUp = (i) => ({
+  hidden: { opacity: 0, y: 28 },
+  visible: {
+    opacity: 1, y: 0,
+    transition: { duration: 0.6, delay: i * 0.12, ease: 'easeOut' },
+  },
+})
 
 export default function Hero() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -30 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.8, ease: 'easeOut' },
-    },
-  }
-
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden bg-white"
-    >
-      {/* Background Image with Futuristic Overlay */}
-      <div
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/hero-bg.png')" }}
-      >
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-[#f5f5f5]">
+
+      {/* Video de fondo — horizontal en desktop, vertical en movil */}
+      <div className="absolute inset-0 z-0">
+        <video
+          className="hidden md:block absolute inset-0 w-full h-full object-cover"
+          autoPlay loop muted playsInline poster="/hero-bg.png"
+        >
+          <source src="/horizontal.mp4" type="video/mp4" />
+        </video>
+        <video
+          className="block md:hidden absolute inset-0 w-full h-full object-cover"
+          autoPlay loop muted playsInline poster="/hero-bg.png"
+        >
+          <source src="/vertical.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 hero-overlay" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-32 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <motion.div
-          className="max-w-3xl"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+      {/* Contenido */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 sm:py-32 lg:py-36">
+
+        <motion.span
+          variants={fadeUp(0)} initial="hidden" animate="visible"
+          className="inline-block text-[11px] font-black tracking-[0.18em] uppercase bg-black/10 border border-black/20 text-black px-4 py-1.5 rounded-full mb-6"
         >
-          {/* Tag */}
-          <motion.div
-            className="inline-block mb-6"
-            variants={itemVariants}
-          >
-            <span className="bg-black text-white text-xs font-black px-4 py-2 rounded-full uppercase tracking-widest shadow-md">
-              ¡NUEVOS PLANES GIGA!
-            </span>
-          </motion.div>
+          Nuevos Planes GIGA 2026
+        </motion.span>
 
-          {/* Social Icons */}
-          <motion.div
-            className="flex gap-4 mb-8 text-gray-500"
-            variants={itemVariants}
-          >
-            {[
-              { icon: Facebook, href: 'https://facebook.com/forwardvision' },
-              { icon: () => (
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47-.13 5.35.14 10.74-1.62 15.91-1.75 5.12-7.39 8.23-12.73 7.48-5.3-.7-9.27-5.51-8.89-10.86.34-5.34 5.22-9.69 10.56-9.1 1.28.1 2.52.48 3.62 1.16.14-3.12-.13-6.24.13-9.36.01-1.25.05-2.49.06-3.73z"/>
-                </svg>
-              ), href: 'https://tiktok.com/@forwardvision' },
-            ].map((social, idx) => (
-              <motion.a
-                key={idx}
-                href={social.href}
-                className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center hover:text-black hover:bg-gray-200 transition-all border border-gray-200"
-                whileHover={{ y: -3, backgroundColor: 'rgba(255,255,255,0.05)' }}
-              >
-                {typeof social.icon === 'function' ? <social.icon /> : <social.icon size={20} />}
-              </motion.a>
-            ))}
-          </motion.div>
+        <motion.h1
+          variants={fadeUp(1)} initial="hidden" animate="visible"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-black leading-[1.06] tracking-tight max-w-3xl mb-6"
+        >
+          Internet Fibra Optica
+          <br />
+          <span className="text-black/70">y Cable TV</span>
+          <br />
+          para tu Hogar
+        </motion.h1>
 
-          {/* Main Heading */}
-          <motion.div className="space-y-6" variants={itemVariants}>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-none text-black tracking-tight">
-              Velocidad Giga y <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600 drop-shadow-sm">
-                Entretenimiento Total
-              </span><br />
-              Para Tu Hogar
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-2xl font-light">
-              La evolución de la fibra óptica ha llegado. Disfruta de internet simétrico de ultra-velocidad y TV 4K sin interrupciones.
-            </p>
-          </motion.div>
+        <motion.p
+          variants={fadeUp(2)} initial="hidden" animate="visible"
+          className="text-base sm:text-lg text-black/70 leading-relaxed max-w-lg mb-10 font-light"
+        >
+          Velocidad simetrica real desde 250 Mbps hasta 1 Gbps. Television digital con mas de 100 canales HD. Sin cortes, sin excusas.
+        </motion.p>
 
-          {/* CTA Buttons */}
-          <motion.div
-            className="flex flex-wrap gap-6 pt-10"
-            variants={itemVariants}
-          >
-            <motion.a
-              href="https://wa.me/51900970806?text=Hola,%20necesito%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20Forward%20Vision."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-10 py-4 bg-black text-white rounded-xl font-bold flex items-center gap-3 shadow-lg hover:shadow-xl hover:bg-gray-800 group"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span>CONTRATAR AHORA</span>
-              <div className="bg-white/20 p-1 rounded-full group-hover:bg-white group-hover:text-[#00a3ff] transition-all">
-                <Play size={16} fill="currentColor" />
-              </div>
-            </motion.a>
-
-            <motion.a
-              href="/planes"
-              className="px-10 py-4 border-2 border-gray-200 text-black rounded-xl font-bold bg-white hover:bg-gray-50 hover:border-gray-400 flex items-center gap-2"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              EXPLORAR PLANES
-              <ArrowRight size={20} className="text-gray-500" />
-            </motion.a>
-          </motion.div>
-
-          {/* Features Grid */}
-          <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-16 border-t border-gray-200 mt-16"
-            variants={itemVariants}
-          >
-            {[
-              { label: 'FIBRA REAL', value: '100%' },
-              { label: 'LATENCIA', value: '< 2ms' },
-              { label: 'CANALES HD', value: '+100' },
-              { label: 'SOPORTE AI', value: '24/7' },
-            ].map((stat, idx) => (
-              <div key={idx}>
-                <p className="text-black text-3xl font-black mb-1">{stat.value}</p>
-                <p className="text-gray-500 text-xs font-bold tracking-widest uppercase">{stat.label}</p>
-              </div>
-            ))}
-          </motion.div>
+        <motion.div
+          variants={fadeUp(3)} initial="hidden" animate="visible"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-14"
+        >
+          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="btn-brand justify-center">
+            <PhoneCall size={17} />
+            Contratar Ahora
+          </a>
+          <a href="/planes" className="btn-outline justify-center">
+            Ver Planes
+            <ArrowRight size={17} />
+          </a>
         </motion.div>
 
-        {/* 3D Logo Column */}
-        <motion.div 
-          className="flex justify-center items-center mt-12 lg:mt-0"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
+        <motion.div
+          variants={fadeUp(4)} initial="hidden" animate="visible"
+          className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10 border-t border-black/20 pt-10"
         >
-
-          <ThreeDLogo textureUrl={logo} />
+          {stats.map((s) => (
+            <div key={s.label}>
+              <p className="text-2xl sm:text-3xl font-black text-black mb-1">{s.value}</p>
+              <p className="text-[11px] font-semibold tracking-widest uppercase text-black/50">{s.label}</p>
+            </div>
+          ))}
         </motion.div>
       </div>
-
-      {/* Futuristic Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-10 right-10 flex flex-col items-center gap-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-      >
-        <div className="h-24 w-[2px] bg-gradient-to-b from-transparent via-gray-400 to-gray-800 relative overflow-hidden">
-          <motion.div
-            className="absolute top-0 left-0 w-full h-1/2 bg-white"
-            animate={{ y: ['0%', '200%'] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-          />
-        </div>
-        <span className="text-[10px] font-bold tracking-[0.3em] uppercase vertical-text text-gray-400">SCROLL</span>
-      </motion.div>
     </section>
   )
 }

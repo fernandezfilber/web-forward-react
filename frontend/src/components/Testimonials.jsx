@@ -17,15 +17,10 @@ const DEMO = [
 
 function StatCard({ value, label }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="text-center"
-    >
-      <p className="text-4xl font-black text-cyan-400">{value}</p>
-      <p className="text-sm text-gray-400 mt-1">{label}</p>
-    </motion.div>
+    <div className="text-center">
+      <p className="text-4xl font-black text-[#3C0061] mb-1">{value}</p>
+      <p className="text-sm text-gray-500">{label}</p>
+    </div>
   );
 }
 
@@ -70,9 +65,8 @@ export default function Testimonials() {
   const pct5 = totalRatings ? Math.round((fiveStars / totalRatings) * 100) : 0;
 
   return (
-    <section id="testimonios" className="py-24 bg-gradient-to-b from-gray-950 to-gray-900 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
+    <section id="testimonios" className="py-20 md:py-28 bg-[#fafafa] relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#3C0061]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
@@ -83,14 +77,12 @@ export default function Testimonials() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-cyan-400 text-sm font-semibold tracking-wider uppercase mb-4">
-            Opiniones reales
-          </span>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+          <span className="section-label">Opiniones reales</span>
+          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">
             Lo que dicen nuestros<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">clientes</span>
+            <span className="text-[#3C0061]">clientes</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-xl mx-auto">
+          <p className="text-gray-500 text-lg max-w-xl mx-auto">
             Miles de familias y empresas confían en Forward Vision para su conexión diaria.
           </p>
         </motion.div>
@@ -100,7 +92,7 @@ export default function Testimonials() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-3 gap-8 mb-16 py-8 border-y border-white/5"
+          className="grid grid-cols-3 gap-8 mb-16 py-8 border-y border-gray-200"
         >
           <StatCard value={`${avgRating} ★`} label="Promedio general" />
           <StatCard value={`${pct5}%`} label="Calificaron con 5 ★" />
@@ -114,9 +106,9 @@ export default function Testimonials() {
           viewport={{ once: true }}
           className="flex flex-col items-center mb-12"
         >
-          <p className="text-7xl font-black text-white mb-2">{avgRating}</p>
+          <p className="text-7xl font-black text-gray-900 mb-2">{avgRating}</p>
           <StarRating value={Math.round(avgRating)} readOnly size={32} />
-          <p className="text-gray-500 mt-2 flex items-center gap-2">
+          <p className="text-gray-400 mt-2 flex items-center gap-2">
             <Users size={16} /> {totalRatings} clientes calificaron
           </p>
         </motion.div>
@@ -133,26 +125,26 @@ export default function Testimonials() {
                 transition={{ duration: 0.4 }}
                 className="max-w-2xl mx-auto"
               >
-                <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-10">
+                <div className="relative bg-white border border-gray-200 rounded-3xl p-8 md:p-10 shadow-sm">
                   {/* Quote icon */}
-                  <Quote className="absolute top-6 right-8 text-cyan-500/20" size={64} />
+                  <Quote className="absolute top-6 right-8 text-[#3C0061]/10" size={64} />
 
                   {/* Stars */}
                   <StarRating value={comments[current].stars} readOnly size={22} />
 
                   {/* Comment */}
-                  <p className="text-white text-xl leading-relaxed mt-4 mb-6 font-light">
+                  <p className="text-gray-800 text-xl leading-relaxed mt-4 mb-6 font-light">
                     "{comments[current].content}"
                   </p>
 
                   {/* Author */}
                   <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-lg">
+                    <div className="w-11 h-11 rounded-full bg-[#3C0061] flex items-center justify-center text-white font-bold text-lg">
                       {(comments[current].authorName || 'C')[0].toUpperCase()}
                     </div>
                     <div>
-                      <p className="text-white font-semibold">{comments[current].authorName || 'Cliente verificado'}</p>
-                      <p className="text-gray-500 text-sm">
+                      <p className="text-gray-900 font-semibold">{comments[current].authorName || 'Cliente verificado'}</p>
+                      <p className="text-gray-400 text-sm">
                         {new Date(comments[current].createdAt).toLocaleDateString('es-PE', { month: 'long', year: 'numeric' })}
                       </p>
                     </div>
@@ -165,7 +157,7 @@ export default function Testimonials() {
             <div className="flex items-center justify-center gap-4 mt-8">
               <button
                 onClick={prev}
-                className="w-10 h-10 rounded-full border border-white/10 bg-white/5 hover:bg-cyan-500/20 hover:border-cyan-500/50 flex items-center justify-center text-white transition-all"
+                className="w-10 h-10 rounded-full border border-gray-200 bg-white hover:bg-[#3C0061] hover:text-white hover:border-[#3C0061] flex items-center justify-center text-gray-400 transition-all"
                 aria-label="Anterior"
               >
                 <ChevronLeft size={18} />
@@ -178,7 +170,7 @@ export default function Testimonials() {
                     key={i}
                     onClick={() => setCurrent(i)}
                     className={`rounded-full transition-all duration-300 ${
-                      i === current ? 'w-6 h-2 bg-cyan-400' : 'w-2 h-2 bg-white/20 hover:bg-white/40'
+                      i === current ? 'w-6 h-2 bg-[#3C0061]' : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
                     }`}
                     aria-label={`Ir al testimonio ${i + 1}`}
                   />
@@ -187,7 +179,7 @@ export default function Testimonials() {
 
               <button
                 onClick={next}
-                className="w-10 h-10 rounded-full border border-white/10 bg-white/5 hover:bg-cyan-500/20 hover:border-cyan-500/50 flex items-center justify-center text-white transition-all"
+                className="w-10 h-10 rounded-full border border-gray-200 bg-white hover:bg-[#3C0061] hover:text-white hover:border-[#3C0061] flex items-center justify-center text-gray-400 transition-all"
                 aria-label="Siguiente"
               >
                 <ChevronRight size={18} />
@@ -203,12 +195,12 @@ export default function Testimonials() {
           viewport={{ once: true }}
           className="text-center mt-14"
         >
-          <p className="text-gray-400 mb-4">¿Ya eres cliente? Comparte tu experiencia</p>
+          <p className="text-gray-500 mb-4">Ya eres cliente? Comparte tu experiencia</p>
           <Link
             to={user ? "/testimonios" : "/login?from=/testimonios"}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 rounded-full hover:bg-cyan-500 hover:text-black hover:border-cyan-500 font-semibold transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.1)]"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#3C0061] text-white rounded-full hover:bg-[#5a0090] font-semibold transition-all"
           >
-            <MessageSquare size={16} /> {user ? 'Dejar mi comentario' : 'Iniciar sesión para comentar'}
+            <MessageSquare size={16} /> {user ? 'Dejar mi comentario' : 'Iniciar sesion para comentar'}
           </Link>
         </motion.div>
       </div>

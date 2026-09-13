@@ -1,28 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://forwardvision.cloud/</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://forwardvision.cloud/planes</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://forwardvision.cloud/cobertura</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://forwardvision.cloud/nosotros</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://forwardvision.cloud/soporte</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>

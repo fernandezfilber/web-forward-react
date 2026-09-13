@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react'
+﻿import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, LogIn, LogOut, Shield, User, ChevronDown } from 'lucide-react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import Anime3DLogo from './Anime3DLogo'
-import logo from '../assets/logo.png'
 import { useAuth } from '../context/AuthContext'
 
 export default function Navbar() {
-  const [isOpen, setIsOpen]       = useState(false)
+  const [isOpen, setIsOpen]         = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const dropdownRef = useRef(null)
@@ -21,12 +19,10 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target))
         setDropdownOpen(false)
-      }
     }
     document.addEventListener('mousedown', handler)
     return () => document.removeEventListener('mousedown', handler)
@@ -49,67 +45,60 @@ export default function Navbar() {
   }
 
   const navItems = [
-    { label: 'Inicio',    path: '/' },
-    { label: 'Planes',    path: '/planes' },
-    { label: 'Cobertura', path: '/cobertura' },
-    { label: 'Nosotros',  path: '/nosotros' },
-    { label: 'Galería',   path: '/galeria' },
+    { label: 'Inicio',      path: '/' },
+    { label: 'Planes',      path: '/planes' },
+    { label: 'Cobertura',   path: '/cobertura' },
+    { label: 'Nosotros',    path: '/nosotros' },
+    { label: 'Galeria',     path: '/galeria' },
     { label: 'Testimonios', path: '/testimonios' },
-    { label: 'Soporte',   path: '/soporte' },
+    { label: 'Soporte',     path: '/soporte' },
   ]
 
   return (
-    <motion.nav
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-nav py-2' : 'bg-white/80 py-4'}`}
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <nav className={`site-navbar fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-nav py-1' : 'py-2 sm:py-3'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
+
           {/* Logo */}
-          <Link to="/">
-            <div className="flex items-center py-2">
-              <Anime3DLogo src={logo} alt="Forward Vision" className="h-16 md:h-20 w-auto" />
-            </div>
+          <Link to="/" className="flex items-center py-1 shrink-0">
+            <img src="/logo.png" alt="Forward Vision" className="h-10 sm:h-12 md:h-14 w-auto object-contain" />
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {navItems.map(item => (
               <Link key={item.label} to={item.path}
-                className={`text-sm font-bold uppercase tracking-widest transition-all relative group ${
-                  location.pathname === item.path ? 'text-black' : 'text-gray-500 hover:text-black'
+                className={`text-[13px] font-semibold transition-colors relative group ${
+                  location.pathname === item.path
+                    ? 'text-black'
+                    : 'text-gray-600 hover:text-black'
                 }`}
               >
                 {item.label}
-                <span className={`absolute -bottom-1 left-0 h-0.5 bg-black transition-all duration-300 ${
+                  <span className={`absolute -bottom-0.5 left-0 h-0.5 bg-black transition-all duration-300 ${
                   location.pathname === item.path ? 'w-full' : 'w-0 group-hover:w-full'
                 }`} />
               </Link>
             ))}
 
-            <motion.button
+            <button
               onClick={handleContactClick}
-              className="px-6 py-2.5 bg-black text-white rounded-lg font-black text-xs uppercase tracking-widest hover:bg-gray-800 transition-all shadow-md"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="btn-brand ml-2 py-2.5 px-5 text-[13px]"
             >
-              CONTACTAR
-            </motion.button>
+              Contactar
+            </button>
 
-            {/* Auth area */}
             {user ? (
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setDropdownOpen(p => !p)}
-                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-100 border border-gray-200 hover:border-gray-400 transition-all"
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-100 border border-gray-200 hover:border-[#3C0061]/30 transition-all"
                 >
-                  <div className="w-7 h-7 rounded-lg bg-gray-200 flex items-center justify-center text-black font-black text-xs">
+                  <div className="w-7 h-7 rounded-lg bg-black flex items-center justify-center text-white font-black text-xs">
                     {user.name?.[0]?.toUpperCase()}
                   </div>
-                  <span className="text-black text-xs font-bold max-w-[100px] truncate">{user.name}</span>
-                  <ChevronDown size={14} className={`text-gray-500 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
+                  <span className="text-gray-800 text-xs font-bold max-w-[90px] truncate">{user.name}</span>
+                  <ChevronDown size={14} className={`text-gray-400 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 <AnimatePresence>
@@ -122,18 +111,18 @@ export default function Navbar() {
                     >
                       {isAdmin && (
                         <Link to="/admin" onClick={() => setDropdownOpen(false)}
-                          className="flex items-center gap-2 px-4 py-3 text-sm text-black hover:bg-gray-100 transition-all font-bold">
+                          className="flex items-center gap-2 px-4 py-3 text-sm text-black hover:bg-gray-100 font-bold">
                           <Shield size={14} /> Panel Admin
                         </Link>
                       )}
                       <Link to="/perfil" onClick={() => setDropdownOpen(false)}
-                        className="flex items-center gap-2 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-black transition-all font-bold">
+                        className="flex items-center gap-2 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 font-semibold">
                         <User size={14} /> Mi Perfil
                       </Link>
                       <div className="border-t border-gray-100">
                         <button onClick={handleLogout}
-                          className="w-full flex items-center gap-2 px-4 py-3 text-sm text-red-400 hover:bg-red-500/10 transition-all font-bold">
-                          <LogOut size={14} /> Cerrar Sesión
+                          className="w-full flex items-center gap-2 px-4 py-3 text-sm text-red-500 hover:bg-red-50 font-semibold">
+                          <LogOut size={14} /> Cerrar Sesion
                         </button>
                       </div>
                     </motion.div>
@@ -142,66 +131,80 @@ export default function Navbar() {
               </div>
             ) : (
               <Link to="/login">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-4 py-2.5 border border-gray-300 rounded-lg font-black text-xs uppercase tracking-widest text-gray-700 hover:border-black hover:text-black transition-all"
-                >
+                <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-[13px] font-semibold text-gray-600 hover:border-black hover:text-black transition-all">
                   <LogIn size={14} /> Ingresar
-                </motion.button>
+                </button>
               </Link>
             )}
           </div>
 
-          {/* Mobile Button */}
-          <button onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-xl bg-gray-100 text-black hover:bg-gray-200 transition-colors">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? 'Cerrar menu' : 'Abrir menu'}
+            aria-expanded={isOpen}
+            className="md:hidden p-2.5 rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
+          >
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
-        <motion.div className="md:hidden overflow-hidden" initial={false}
-          animate={{ height: isOpen ? 'auto' : 0 }} transition={{ duration: 0.3 }}>
-          <div className="mt-4 px-2 py-6 space-y-4 bg-white rounded-2xl border border-gray-200 shadow-lg">
-            {navItems.map(item => (
-              <Link key={item.label} to={item.path} onClick={() => setIsOpen(false)}
-                className={`block w-full text-center px-4 py-3 rounded-xl transition-all font-bold uppercase tracking-widest text-xs ${
-                  location.pathname === item.path
-                    ? 'text-black bg-gray-100'
-                    : 'text-gray-500 hover:text-black hover:bg-gray-50'
-                }`}>{item.label}</Link>
-            ))}
-            <button onClick={handleContactClick}
-              className="w-full px-4 py-4 bg-black text-white rounded-xl font-black text-xs uppercase tracking-widest shadow-md hover:bg-gray-800">
-              CONTACTAR AHORA
-            </button>
-            {user ? (
-              <>
-                {isAdmin && (
-                  <Link to="/admin" onClick={() => setIsOpen(false)}
-                    className="block text-center px-4 py-3 rounded-xl text-black bg-gray-100 font-bold text-xs uppercase tracking-widest">
-                    Panel Admin
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25 }}
+              className="md:hidden overflow-hidden"
+            >
+              <div className="navbar-menu-panel mt-3 py-4 px-2 space-y-1 border shadow-lg max-h-[80vh] overflow-y-auto">
+                {navItems.map(item => (
+                  <Link key={item.label} to={item.path} onClick={() => setIsOpen(false)}
+                    className={`block w-full text-center px-4 py-3 rounded-xl text-[13px] font-semibold transition-all ${
+                      location.pathname === item.path
+                        ? 'text-black bg-gray-100'
+                        : 'text-gray-600 hover:text-black hover:bg-gray-50'
+                    }`}
+                  >
+                    {item.label}
                   </Link>
-                )}
-                <Link to="/perfil" onClick={() => setIsOpen(false)}
-                  className="block text-center px-4 py-3 rounded-xl border border-gray-200 text-gray-700 font-bold text-xs uppercase tracking-widest hover:bg-gray-50">
-                  Mi Perfil
-                </Link>
-                <button onClick={() => { handleLogout(); setIsOpen(false) }}
-                  className="w-full px-4 py-3 bg-red-500/10 text-red-400 rounded-xl font-bold text-xs uppercase tracking-widest">
-                  Cerrar Sesión
-                </button>
-              </>
-            ) : (
-              <Link to="/login" onClick={() => setIsOpen(false)}
-                className="block text-center px-4 py-3 rounded-xl border border-gray-300 text-gray-700 font-bold text-xs uppercase tracking-widest hover:bg-gray-50">
-                Iniciar Sesión
-              </Link>
-            )}
-          </div>
-        </motion.div>
+                ))}
+                <div className="pt-2 border-t border-gray-100 space-y-2">
+                  <button onClick={handleContactClick}
+                    className="w-full py-3 btn-brand justify-center text-[13px]">
+                    Contactar
+                  </button>
+                  {user ? (
+                    <>
+                      {isAdmin && (
+                        <Link to="/admin" onClick={() => setIsOpen(false)}
+                          className="block text-center px-4 py-3 rounded-xl text-black bg-gray-100 font-semibold text-[13px]">
+                          Panel Admin
+                        </Link>
+                      )}
+                      <Link to="/perfil" onClick={() => setIsOpen(false)}
+                        className="block text-center px-4 py-3 rounded-xl border border-gray-200 text-gray-600 font-semibold text-[13px] hover:bg-gray-50">
+                        Mi Perfil
+                      </Link>
+                      <button onClick={() => { handleLogout(); setIsOpen(false) }}
+                        className="w-full px-4 py-3 bg-red-50 text-red-500 rounded-xl font-semibold text-[13px]">
+                        Cerrar Sesion
+                      </button>
+                    </>
+                  ) : (
+                    <Link to="/login" onClick={() => setIsOpen(false)}
+                      className="block text-center px-4 py-3 rounded-xl border border-gray-200 text-gray-600 font-semibold text-[13px] hover:bg-gray-50">
+                      Iniciar Sesion
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </motion.nav>
+    </nav>
   )
 }

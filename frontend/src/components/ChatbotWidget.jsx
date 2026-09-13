@@ -192,11 +192,13 @@ Responde siempre en este formato:
       {/* Botón flotante */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-8 right-8 w-32 h-32 md:w-40 md:h-40 bg-white rounded-full shadow-[0_0_60px_rgba(6,182,212,0.6)] z-50 flex items-center justify-center p-6 border-4 border-cyan-500/50 overflow-hidden pulse-heartbeat"
+        aria-label="Consulta con Forward IA"
+        title="Consulta con Forward IA"
+        className="ai-widget-button fixed bottom-8 right-8 z-50 flex h-24 w-24 items-center justify-center overflow-hidden border-4 border-black bg-white p-4 shadow-[0_0_35px_rgba(0,0,0,0.28)] pulse-heartbeat md:h-28 md:w-28"
         whileHover={{ scale: 1.1, rotate: 5 }}
         whileTap={{ scale: 0.95 }}
       >
-        {isOpen ? <X size={64} className="text-cyan-500" /> : <img src={icono} alt="forward AI" className="w-full h-full object-contain" />}
+        {isOpen ? <X size={64} className="text-cyan-500" /> : <img src={icono} alt="forward AI" className="ai-widget-image h-full w-full object-cover object-center" />}
       </motion.button>
 
       <AnimatePresence>
@@ -212,10 +214,10 @@ Responde siempre en este formato:
             <div className="bg-gradient-to-r from-gray-900 to-blue-900 text-white p-4 flex items-center justify-between border-b border-white/10">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-white p-1">
-                  <img src={icono} alt="forward AI" className="w-full h-full object-contain" />
+                  <img src={icono} alt="forward AI" className="ai-widget-image h-full w-full object-cover object-center" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm tracking-tight">Asistente Forward AI</h3>
+                    <h3 className="font-bold text-sm tracking-tight">Consulta con Forward IA</h3>
                   <div className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
                     <p className="text-[10px] opacity-70">En línea | Consultoría IA</p>
