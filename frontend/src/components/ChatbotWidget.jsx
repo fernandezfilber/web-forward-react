@@ -35,7 +35,7 @@ export default function ChatbotWidget() {
 
   // ==================== CONFIGURACIÓN ====================
   const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
-  const GROQ_MODEL = import.meta.env.VITE_GROQ_MODEL || "llama-3.1-70b-versatile";
+  const GROQ_MODEL = import.meta.env.VITE_GROQ_MODEL || "llama3-8b-8192";
 
   const callGroqAPI = async (newMessages) => {
     if (!GROQ_API_KEY || GROQ_API_KEY.length < 10) {
