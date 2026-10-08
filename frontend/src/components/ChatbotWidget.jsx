@@ -41,7 +41,7 @@ export default function ChatbotWidget() {
     if (!GROQ_API_KEY || GROQ_API_KEY.length < 10) {
       console.error("VITE_GROQ_API_KEY no está configurada correctamente");
       return {
-        reply: "⚠️ **Error de Configuración**: No se encontró una clave de API válida para Groq. Contacta al administrador.",
+        reply: "⚠️ **Forward IA no está configurada todavía.** Contacta al administrador para activar el asistente.",
         intent: "ERROR",
         action: "NONE"
       };
@@ -95,8 +95,11 @@ Responde siempre en este formato:
         content: msg.text
       }));
 
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 20000);
       const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
         method: "POST",
+        signal: controller.signal,
         headers: {
           "Authorization": `Bearer ${GROQ_API_KEY}`,
           "Content-Type": "application/json"
@@ -111,6 +114,8 @@ Responde siempre en este formato:
           response_format: { type: "json_object" }
         })
       });
+
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -129,8 +134,11 @@ Responde siempre en este formato:
 
     } catch (error) {
       console.error("Chatbot error:", error);
+      const message = error.name === 'AbortError'
+        ? 'La respuesta está tardando demasiado. Intenta nuevamente.'
+        : `Error de conexión: ${error.message}. Por favor, intenta de nuevo.`;
       return {
-        reply: `❌ **Error de Conexión**: ${error.message}. Por favor, intenta de nuevo.`,
+        reply: `❌ **${message}**`,
         intent: "ERROR",
         action: "NONE"
       };

@@ -2,11 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Scrollbar invisible en contenedores overflow-x */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+
 :root {
-  --brand:        #111111;
-  --brand-dark:   #000000;
+  --brand:        #0047FF;
+  --brand-dark:   #0033B3;
   --brand-mid:    #333333;
-  --brand-light:  #555555;
+  --brand-light:  #336BFF;
   --brand-pale:   #f1f1f1;
   --text-primary: #0f0f1a;
   --text-secondary:#4b4b6b;
@@ -122,7 +127,7 @@ body {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #f0f0f0; }
 ::-webkit-scrollbar-thumb { background: #c0a0d8; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #3C0061; }
+::-webkit-scrollbar-thumb:hover { background: #0047FF; }
 
 a, button { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
 
@@ -260,7 +265,7 @@ a[class*="bg-gradient"] {
   -webkit-text-fill-color: #111 !important;
 }
 
-[class*="text-[#3C0061]"],
+[class*="text-[#0047FF]"],
 h1 span,
 h2 span,
 h3 span {
@@ -272,7 +277,7 @@ h3 span {
 [class*="bg-[#030712]"],
 [class*="bg-[#0a0f1a]"],
 [class*="bg-[#1a0029]"],
-[class*="bg-[#3C0061]"] {
+[class*="bg-[#0047FF]"] {
   background-color: #f5f5f5 !important;
   color: #111 !important;
 }
@@ -280,7 +285,7 @@ h3 span {
 [class*="bg-[#030712]"] [class*="text-white"],
 [class*="bg-[#0a0f1a]"] [class*="text-white"],
 [class*="bg-[#1a0029]"] [class*="text-white"],
-[class*="bg-[#3C0061]"] [class*="text-white"] {
+[class*="bg-[#0047FF]"] [class*="text-white"] {
   color: #111 !important;
 }
 

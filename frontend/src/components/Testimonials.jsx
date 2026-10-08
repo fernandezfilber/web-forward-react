@@ -18,7 +18,7 @@ const DEMO = [
 function StatCard({ value, label }) {
   return (
     <div className="text-center">
-      <p className="text-4xl font-black text-[#3C0061] mb-1">{value}</p>
+      <p className="text-4xl font-black text-[#0047FF] mb-1">{value}</p>
       <p className="text-sm text-gray-500">{label}</p>
     </div>
   );
@@ -66,7 +66,7 @@ export default function Testimonials() {
 
   return (
     <section id="testimonios" className="py-20 md:py-28 bg-[#fafafa] relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#3C0061]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#0047FF]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
@@ -80,7 +80,7 @@ export default function Testimonials() {
           <span className="section-label">Opiniones reales</span>
           <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">
             Lo que dicen nuestros<br />
-            <span className="text-[#3C0061]">clientes</span>
+            <span className="text-[#0047FF]">clientes</span>
           </h2>
           <p className="text-gray-500 text-lg max-w-xl mx-auto">
             Miles de familias y empresas confían en Forward Vision para su conexión diaria.
@@ -127,7 +127,7 @@ export default function Testimonials() {
               >
                 <div className="relative bg-white border border-gray-200 rounded-3xl p-8 md:p-10 shadow-sm">
                   {/* Quote icon */}
-                  <Quote className="absolute top-6 right-8 text-[#3C0061]/10" size={64} />
+                  <Quote className="absolute top-6 right-8 text-[#0047FF]/10" size={64} />
 
                   {/* Stars */}
                   <StarRating value={comments[current].stars} readOnly size={22} />
@@ -139,7 +139,7 @@ export default function Testimonials() {
 
                   {/* Author */}
                   <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-full bg-[#3C0061] flex items-center justify-center text-white font-bold text-lg">
+                    <div className="w-11 h-11 rounded-full bg-[#0047FF] flex items-center justify-center text-white font-bold text-lg">
                       {(comments[current].authorName || 'C')[0].toUpperCase()}
                     </div>
                     <div>
@@ -157,7 +157,7 @@ export default function Testimonials() {
             <div className="flex items-center justify-center gap-4 mt-8">
               <button
                 onClick={prev}
-                className="w-10 h-10 rounded-full border border-gray-200 bg-white hover:bg-[#3C0061] hover:text-white hover:border-[#3C0061] flex items-center justify-center text-gray-400 transition-all"
+                className="w-10 h-10 rounded-full border border-gray-200 bg-white hover:bg-[#0047FF] hover:text-white hover:border-[#0047FF] flex items-center justify-center text-gray-400 transition-all"
                 aria-label="Anterior"
               >
                 <ChevronLeft size={18} />
@@ -170,7 +170,7 @@ export default function Testimonials() {
                     key={i}
                     onClick={() => setCurrent(i)}
                     className={`rounded-full transition-all duration-300 ${
-                      i === current ? 'w-6 h-2 bg-[#3C0061]' : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
+                      i === current ? 'w-6 h-2 bg-[#0047FF]' : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
                     }`}
                     aria-label={`Ir al testimonio ${i + 1}`}
                   />
@@ -179,7 +179,7 @@ export default function Testimonials() {
 
               <button
                 onClick={next}
-                className="w-10 h-10 rounded-full border border-gray-200 bg-white hover:bg-[#3C0061] hover:text-white hover:border-[#3C0061] flex items-center justify-center text-gray-400 transition-all"
+                className="w-10 h-10 rounded-full border border-gray-200 bg-white hover:bg-[#0047FF] hover:text-white hover:border-[#0047FF] flex items-center justify-center text-gray-400 transition-all"
                 aria-label="Siguiente"
               >
                 <ChevronRight size={18} />
@@ -198,7 +198,7 @@ export default function Testimonials() {
           <p className="text-gray-500 mb-4">Ya eres cliente? Comparte tu experiencia</p>
           <Link
             to={user ? "/testimonios" : "/login?from=/testimonios"}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[#3C0061] text-white rounded-full hover:bg-[#5a0090] font-semibold transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#0047FF] text-white rounded-full hover:bg-[#0038cc] font-semibold transition-all"
           >
             <MessageSquare size={16} /> {user ? 'Dejar mi comentario' : 'Iniciar sesion para comentar'}
           </Link>

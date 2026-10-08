@@ -5,6 +5,7 @@ import Promociones from '../components/Promociones'
 import Services from '../components/Services'
 import Gallery from '../components/Gallery'
 import Testimonials from '../components/Testimonials'
+import FAQ from '../components/FAQ'
 import ContactForm from '../components/ContactForm'
 
 export default function Inicio() {
@@ -52,6 +53,9 @@ export default function Inicio() {
 
         {/* Testimonios / Lo que dicen nuestros clientes */}
         <Testimonials />
+
+        {/* FAQ Section */}
+        <FAQ />
 
         {/* Contact Section */}
         <ContactForm />

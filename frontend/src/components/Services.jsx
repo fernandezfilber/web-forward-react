@@ -1,4 +1,4 @@
-﻿import React from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import { Wifi, Tv, Package, Clock, Headphones, MapPin, ArrowRight } from 'lucide-react'
 
@@ -20,7 +20,7 @@ export default function Services() {
         <div className="text-center mb-14 md:mb-20">
           <span className="section-label">Lo que ofrecemos</span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-4">
-            Servicios de <span className="text-[#3C0061]">Proxima Generacion</span>
+            Servicios de <span className="text-[#0047FF]">Proxima Generacion</span>
           </h2>
           <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto font-light">
             Disenamos soluciones tecnologicas que transforman tu manera de conectar, trabajar y disfrutar.
@@ -39,14 +39,14 @@ export default function Services() {
               transition={{ delay: i * 0.08, duration: 0.5 }}
               className="card p-7 flex flex-col gap-4 group"
             >
-              <div className="w-12 h-12 rounded-xl bg-[#3C0061] flex items-center justify-center shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-[#0047FF] flex items-center justify-center shrink-0">
                 <s.icon size={22} className="text-white" />
               </div>
               <div>
                 <h3 className="text-lg font-bold text-gray-900 mb-1.5">{s.title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{s.desc}</p>
               </div>
-              <span className="mt-auto flex items-center gap-1 text-[#3C0061] text-[13px] font-semibold">
+              <span className="mt-auto flex items-center gap-1 text-[#0047FF] text-[13px] font-semibold">
                 Ver mas <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </span>
             </motion.a>

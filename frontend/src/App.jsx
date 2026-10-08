@@ -78,7 +78,7 @@ function RouteSeo() {
 function AdminLoader() {
   return (
     <div className="min-h-screen bg-white flex items-center justify-center">
-      <div className="w-10 h-10 border-4 border-purple-200 border-t-[#3C0061] rounded-full animate-spin" />
+      <div className="w-10 h-10 border-4 border-purple-200 border-t-[#0047FF] rounded-full animate-spin" />
     </div>
   )
 }

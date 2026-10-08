@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, LogIn, LogOut, Shield, User, ChevronDown } from 'lucide-react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -92,7 +92,7 @@ export default function Navbar() {
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setDropdownOpen(p => !p)}
-                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-100 border border-gray-200 hover:border-[#3C0061]/30 transition-all"
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-100 border border-gray-200 hover:border-[#0047FF]/30 transition-all"
                 >
                   <div className="w-7 h-7 rounded-lg bg-black flex items-center justify-center text-white font-black text-xs">
                     {user.name?.[0]?.toUpperCase()}

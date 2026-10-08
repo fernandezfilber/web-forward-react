@@ -1,4 +1,4 @@
-ï»¿import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, CheckCircle2, Timer } from 'lucide-react'
 
@@ -7,17 +7,17 @@ const PROMOS = [
     id: 1,
     badge: 'Sin costo adicional',
     title: 'Instalacion\nGRATIS',
-    desc: 'OlvÃ­date del costo de instalacion. Tecnicos certificados llegan a tu hogar sin cobro extra.',
+    desc: 'Olvídate del costo de instalacion. Tecnicos certificados llegan a tu hogar sin cobro extra.',
     items: ['Instalacion de fibra optica', 'Configuracion de router', 'Prueba de velocidad incluida'],
-    accent: '#3C0061',
+    accent: '#0047FF',
   },
   {
     id: 2, featured: true,
     badge: 'Oferta de bienvenida',
     title: 'Primer mes a\nS/ 35',
-    desc: 'Disfruta tu primer mes de fibra Ã³ptica por solo S/ 35, sin costos ocultos.',
-    items: ['Aplica a todos los planes', 'InstalaciÃ³n gratis', 'Velocidad simetrica'],
-    accent: '#5a0090',
+    desc: 'Disfruta tu primer mes de fibra óptica por solo S/ 35, sin costos ocultos.',
+    items: ['Aplica a todos los planes', 'Instalación gratis', 'Velocidad simetrica'],
+    accent: '#0038cc',
   },
   {
     id: 3,
@@ -25,7 +25,7 @@ const PROMOS = [
     title: 'Repetidor WiFi\nGRATIS',
     desc: 'Para planes mayores a S/120 incluimos un repetidor WiFi de alta potencia para cubrir toda tu casa.',
     items: ['Cobertura total del hogar', 'WiFi 6 de alta potencia', 'Configuracion incluida'],
-    accent: '#7a00c0',
+    accent: '#336BFF',
   },
 ]
 
@@ -58,7 +58,7 @@ function useCountdown() {
 function CountdownBox({ value, label }) {
   return (
     <div className="flex flex-col items-center">
-      <div className="w-14 h-14 bg-[#3C0061] rounded-xl flex items-center justify-center shadow">
+      <div className="w-14 h-14 bg-[#0047FF] rounded-xl flex items-center justify-center shadow">
         <span className="text-2xl font-black text-white tabular-nums">{String(value).padStart(2, '0')}</span>
       </div>
       <span className="text-gray-500 text-xs mt-1.5 uppercase tracking-widest font-medium">{label}</span>
@@ -79,7 +79,7 @@ export default function Promociones() {
           <span className="section-label">Tiempo limitado</span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-4">
             Beneficios que no<br />
-            <span className="text-[#3C0061]">encontraras en otro lugar</span>
+            <span className="text-[#0047FF]">encontraras en otro lugar</span>
           </h2>
           <p className="text-base sm:text-lg text-gray-500 max-w-lg mx-auto font-light">
             Contrata hoy y aprovecha todas estas ventajas exclusivas para nuevos clientes.
@@ -117,11 +117,11 @@ export default function Promociones() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className={`card relative overflow-hidden flex flex-col ${p.featured ? 'ring-2 ring-[#3C0061] shadow-lg' : ''}`}
+                className={`card relative overflow-hidden flex flex-col ${p.featured ? 'ring-2 ring-[#0047FF] shadow-lg' : ''}`}
               >
                 {p.featured && (
                   <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 bg-[#3C0061] text-white text-[10px] font-black rounded-full tracking-widest uppercase">
+                    <span className="px-3 py-1 bg-[#0047FF] text-white text-[10px] font-black rounded-full tracking-widest uppercase">
                       Mas popular
                     </span>
                   </div>
@@ -134,7 +134,7 @@ export default function Promociones() {
                   <ul className="space-y-2 mb-7">
                     {p.items.map((item, i) => (
                       <li key={i} className="flex items-center gap-2 text-sm text-gray-600">
-                        <CheckCircle2 size={15} className="text-[#3C0061] shrink-0" />
+                        <CheckCircle2 size={15} className="text-[#0047FF] shrink-0" />
                         {item}
                       </li>
                     ))}

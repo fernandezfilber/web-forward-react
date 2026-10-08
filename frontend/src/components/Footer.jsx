@@ -1,4 +1,4 @@
-﻿import React from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Facebook } from 'lucide-react'
 
@@ -36,11 +36,11 @@ export default function Footer() {
             </p>
             <div className="flex gap-3">
               <a href="https://facebook.com/forwardvision" target="_blank" rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-white/10 hover:bg-[#3C0061] flex items-center justify-center transition-colors">
+                className="w-9 h-9 rounded-lg bg-white/10 hover:bg-[#0047FF] flex items-center justify-center transition-colors">
                 <Facebook size={16} />
               </a>
               <a href="https://tiktok.com/@forwardvision" target="_blank" rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-white/10 hover:bg-[#3C0061] flex items-center justify-center transition-colors">
+                className="w-9 h-9 rounded-lg bg-white/10 hover:bg-[#0047FF] flex items-center justify-center transition-colors">
                 <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
                   <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47-.13 5.35.14 10.74-1.62 15.91-1.75 5.12-7.39 8.23-12.73 7.48-5.3-.7-9.27-5.51-8.89-10.86.34-5.34 5.22-9.69 10.56-9.1 1.28.1 2.52.48 3.62 1.16.14-3.12-.13-6.24.13-9.36.01-1.25.05-2.49.06-3.73z"/>
                 </svg>

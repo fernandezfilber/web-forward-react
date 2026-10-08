@@ -1,4 +1,4 @@
-﻿import React from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, PhoneCall } from 'lucide-react'
 
@@ -23,7 +23,7 @@ export default function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-[#f5f5f5]">
 
-      {/* Video de fondo — horizontal en desktop, vertical en movil */}
+      {/* Video de fondo � horizontal en desktop, vertical en movil */}
       <div className="absolute inset-0 z-0">
         <video
           className="hidden md:block absolute inset-0 w-full h-full object-cover"
