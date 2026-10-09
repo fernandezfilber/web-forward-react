@@ -14,10 +14,12 @@ const authRoutes = require('./routes/auth');
 const mediaRoutes = require('./routes/media');
 const commentRoutes = require('./routes/comments');
 const adminRoutes = require('./routes/admin');
+const assistantRoutes = require('./routes/assistant');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.set('trust proxy', 1);
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 const allowedOrigins = [
   process.env.FRONTEND_URL,
@@ -52,11 +54,13 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 app.get('/api/health', async (req, res) => res.json({ status: 'ok' }));
+app.set('logger', logger);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/media', mediaRoutes);
 app.use('/api/comments', commentRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/assistant', assistantRoutes);
 
 app.use((req, res) => res.status(404).json({ error: 'Ruta no encontrada' }));
 app.use((err, req, res, next) => res.status(err.status || 500).json({ error: err.message || 'Error interno' }));

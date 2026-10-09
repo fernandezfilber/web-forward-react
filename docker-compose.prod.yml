@@ -24,8 +24,6 @@ services:
       dockerfile: Dockerfile.frontend
       args:
         VITE_API_URL: /api
-        VITE_GROQ_API_KEY: ${VITE_GROQ_API_KEY}
-        VITE_GROQ_MODEL: ${VITE_GROQ_MODEL:-llama-3.1-70b-versatile}
     container_name: fv_frontend_prod
     restart: unless-stopped
     labels:

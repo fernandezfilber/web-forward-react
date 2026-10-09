@@ -3,13 +3,9 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Build args for Vite env vars
+# Build args for public Vite configuration
 ARG VITE_API_URL=/api
 ENV VITE_API_URL=$VITE_API_URL
-ARG VITE_GROQ_API_KEY
-ARG VITE_GROQ_MODEL=llama-3.1-70b-versatile
-ENV VITE_GROQ_API_KEY=$VITE_GROQ_API_KEY
-ENV VITE_GROQ_MODEL=$VITE_GROQ_MODEL
 
 COPY frontend/package*.json ./
 RUN npm ci

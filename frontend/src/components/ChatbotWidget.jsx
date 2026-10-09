@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, Minimize2, Loader2 } from 'lucide-react';
 import icono from '../assets/icono.png';
+import api from '../api/client';
 
 export default function ChatbotWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +10,7 @@ export default function ChatbotWidget() {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: '¡Hola! 👋 Soy **Forward AI**, tu asesor experto en Forward Vision. Cuéntame, ¿estás buscando mejorar tu internet actual para trabajar, jugar o para que toda la familia disfrute sin cortes?',
+      text: '¡Hola! 👋 Soy **Forward AI**, tu asistente virtual. Puedo conversar contigo, ayudarte con ciencia, matemáticas, ideas y también responder tus dudas sobre Forward Vision. ¿De qué te gustaría hablar?',
       sender: 'bot',
       timestamp: new Date(),
     },
@@ -33,114 +34,22 @@ export default function ChatbotWidget() {
     return () => window.removeEventListener('open-chatbot', handleOpenChatbot);
   }, []);
 
-  // ==================== CONFIGURACIÓN ====================
-  const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
-  const GROQ_MODEL = import.meta.env.VITE_GROQ_MODEL || "llama3-8b-8192";
-
-  const callGroqAPI = async (newMessages) => {
-    if (!GROQ_API_KEY || GROQ_API_KEY.length < 10) {
-      console.error("VITE_GROQ_API_KEY no está configurada correctamente");
-      return {
-        reply: "⚠️ **Forward IA no está configurada todavía.** Contacta al administrador para activar el asistente.",
-        intent: "ERROR",
-        action: "NONE"
-      };
-    }
-
+  const callAssistantAPI = async (newMessages) => {
     try {
-      const systemPrompt = `Eres Forward AI, el asesor experto de "Forward Vision" (Perú). 
-Tu prioridad es ser amable, profesional y persuasivo, usando la información oficial de nuestros planes.
-
---- NUESTROS PLANES (100% FIBRA ÓPTICA) ---
-Todos los planes incluyen Entretenimiento y Velocidad en un solo paquete:
-1. PLAN BÁSICO: 250MBPS a solo S/ 60.00 mensual.
-2. PLAN NORMAL: 500MBPS a solo S/ 80.00 mensual.
-3. PLAN PREMIUM: 700MBPS a solo S/ 100.00 mensual.
-4. PLAN FULL: 1000MBPS a solo S/ 150.00 mensual.
-
---- BENEFICIOS CLAVE (Mencionalos para convencer) ---
-- ✅ ACTIVACIÓN SIN COSTO ADICIONAL.
-- ✅ 100% Fibra Óptica Pura.
-- ✅ Velocidad Simétrica Ilimitada (misma velocidad de subida y bajada).
-- ✅ Conexión Estable y de Alta Velocidad.
-- ✅ Incluye Servicio de TV (+100 canales).
-- ✅ Asistencia técnica disponible siempre que la necesites.
-
---- PROTOCOLO DE CONVERSACIÓN ---
-1. CHARLA INICIAL: Saluda amablemente. Si preguntan por planes, detalla las opciones y resalta que la ACTIVACIÓN ES GRATIS y que es FIBRA ÓPTICA PURA.
-2. PERSUASIÓN: Si el cliente duda, menciónale que son planes pensados para ahorrar a largo plazo y que no hay límites de conexión.
-3. CIERRE Y DATOS: SOLO cuando el cliente esté convencido y diga "Quiero contratar" o similar, solicita:
-   - DNI (8 dígitos).
-   - Nombre y Apellidos Completos.
-   - Dirección Exacta (con referencias) o Ubicación GPS en tiempo real.
-   - Número de Teléfono de contacto.
-   - Plan elegido.
-4. CONFIRMACIÓN: Haz un resumen de los datos y pide confirmación antes de usar "FINALIZAR_VENTA".
-
---- SOPORTE ---
-- Intenta ayudar primero con: Reinicio de router (30 seg), verificar cables amarillos, búsqueda automática de canales en TV.
-- Si no funciona, pide DNI, Nombre, Dirección y descripción de la falla para derivar al técnico.
-
---- FORMATO JSON ---
-Responde siempre en este formato:
-{
-  "reply": "Tu mensaje aquí",
-  "intent": "SALES" | "SUPPORT" | "GREETING",
-  "action": "NONE" | "FINALIZAR_VENTA" | "DERIVAR_SOPORTE",
-  "collected_data": { "dni": "...", "nombre": "...", "direccion": "...", "telefono": "...", "plan": "...", "averia": "..." }
-}`;
-
       const history = newMessages.map(msg => ({
         role: msg.sender === 'user' ? 'user' : 'assistant',
         content: msg.text
-      }));
-
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 20000);
-      const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-        method: "POST",
-        signal: controller.signal,
-        headers: {
-          "Authorization": `Bearer ${GROQ_API_KEY}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          model: GROQ_MODEL,
-          messages: [
-            { role: "system", content: systemPrompt },
-            ...history
-          ],
-          temperature: 0.7,
-          response_format: { type: "json_object" }
-        })
-      });
-
-      clearTimeout(timeoutId);
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error?.message || "Error en la API de Groq");
-      }
-
-      const data = await response.json();
-      const content = data.choices[0].message.content;
-
-      try {
-        return JSON.parse(content);
-      } catch (e) {
-        console.error("Error parsing JSON from AI:", content);
-        return { reply: content, intent: "UNKNOWN", action: "NONE" };
-      }
-
+      })).filter((message, index) => index > 0 || message.role === 'user').slice(-12);
+      const { data } = await api.post('/assistant/chat', { messages: history }, { timeout: 40000 });
+      return data;
     } catch (error) {
-      console.error("Chatbot error:", error);
-      const message = error.name === 'AbortError'
-        ? 'La respuesta está tardando demasiado. Intenta nuevamente.'
-        : `Error de conexión: ${error.message}. Por favor, intenta de nuevo.`;
+      console.error('Chatbot error:', error);
       return {
-        reply: `❌ **${message}**`,
-        intent: "ERROR",
-        action: "NONE"
+        reply: error.response?.data?.error || 'Error de conexión con el asistente. Por favor, intenta de nuevo.',
+        intent: 'ERROR',
+        action: 'NONE',
+        sources: [],
+        searchUnavailable: false,
       };
     }
   };
@@ -161,11 +70,12 @@ Responde siempre en este formato:
     setInputValue('');
     setIsLoading(true);
 
-    const botResponse = await callGroqAPI(updatedMessages);
+    const botResponse = await callAssistantAPI(updatedMessages);
 
     setMessages(prev => [...prev, {
       id: Date.now() + 2,
-      text: botResponse.reply,
+      text: `${botResponse.reply}${botResponse.searchUnavailable ? '\n\n⚠️ No pude consultar fuentes en línea ahora; esta respuesta es una orientación general.' : ''}`,
+      sources: botResponse.sources || [],
       sender: 'bot',
       timestamp: new Date(),
     }]);
@@ -243,7 +153,7 @@ Responde siempre en este formato:
             {/* Mensajes */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#f8fafc]">
               {messages.map((message) => (
-                <div key={message.id} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div key={message.id} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start flex-col'}`}>
                   <div
                     className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-[13px] leading-relaxed shadow-sm ${message.sender === 'user'
                       ? 'bg-blue-600 text-white rounded-tr-none'
@@ -255,6 +165,20 @@ Responde siempre en este formato:
                         .replace(/\n/g, '<br/>')
                     }}
                   />
+                  {message.sources?.length > 0 && (
+                    <div className="max-w-[85%] mt-2 text-xs text-slate-600">
+                      <p className="font-semibold mb-1">Fuentes consultadas:</p>
+                      <ul className="list-disc pl-4 space-y-1">
+                        {message.sources.map((source) => (
+                          <li key={source.url}>
+                            <a href={source.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                              {source.title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               ))}
 
@@ -278,6 +202,7 @@ Responde siempre en este formato:
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                   placeholder="Escribe tu mensaje aquí..."
+                  maxLength={2000}
                   className="flex-1 px-4 py-2 bg-transparent text-slate-700 text-sm outline-none"
                   disabled={isLoading}
                 />
