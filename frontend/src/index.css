@@ -687,3 +687,16 @@ button:focus-visible {
     box-shadow: 0 0 0 rgba(0, 255, 255, 0);
   }
 }
+
+/* Keep emphasized title fragments monochrome and use square corners site-wide. */
+h1 span[class],
+h2 span[class],
+h3 span[class] {
+  color: inherit !important;
+  background-image: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+:root *:not(img) {
+  border-radius: 0 !important;
+}
