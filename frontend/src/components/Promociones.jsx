@@ -9,7 +9,7 @@ const PROMOS = [
     title: 'Instalacion\nGRATIS',
     desc: 'Olv�date del costo de instalacion. Tecnicos certificados llegan a tu hogar sin cobro extra.',
     items: ['Instalacion de fibra optica', 'Configuracion de router', 'Prueba de velocidad incluida'],
-    accent: '#0047FF',
+    accent: '#00ffff',
   },
   {
     id: 2, featured: true,
@@ -17,7 +17,7 @@ const PROMOS = [
     title: 'Primer mes a\nS/ 35',
     desc: 'Disfruta tu primer mes de fibra �ptica por solo S/ 35, sin costos ocultos.',
     items: ['Aplica a todos los planes', 'Instalaci�n gratis', 'Velocidad simetrica'],
-    accent: '#0038cc',
+    accent: '#00ffff',
   },
   {
     id: 3,
@@ -25,7 +25,7 @@ const PROMOS = [
     title: 'Repetidor WiFi\nGRATIS',
     desc: 'Para planes mayores a S/120 incluimos un repetidor WiFi de alta potencia para cubrir toda tu casa.',
     items: ['Cobertura total del hogar', 'WiFi 6 de alta potencia', 'Configuracion incluida'],
-    accent: '#336BFF',
+    accent: '#00ffff',
   },
 ]
 
@@ -121,7 +121,7 @@ export default function Promociones() {
               >
                 {p.featured && (
                   <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 bg-[#0047FF] text-white text-[10px] font-black rounded-full tracking-widest uppercase">
+                    <span className="promo-featured-badge px-3 py-1 text-[10px] font-black rounded-full tracking-widest uppercase">
                       Mas popular
                     </span>
                   </div>
@@ -134,13 +134,12 @@ export default function Promociones() {
                   <ul className="space-y-2 mb-7">
                     {p.items.map((item, i) => (
                       <li key={i} className="flex items-center gap-2 text-sm text-gray-600">
-                        <CheckCircle2 size={15} className="text-[#0047FF] shrink-0" />
+                        <CheckCircle2 size={15} className="promo-check-accent shrink-0" />
                         {item}
                       </li>
                     ))}
                   </ul>
-                  <a href="/planes" className="mt-auto flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm text-white transition-all hover:opacity-90"
-                    style={{ background: p.accent }}>
+                  <a href="/planes" className="promo-plan-link mt-auto flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm transition-all">
                     Ver planes <ArrowRight size={15} />
                   </a>
                 </div>

@@ -54,11 +54,47 @@ body {
   border: 1px solid var(--border);
   border-radius: 1.25rem;
   box-shadow: 0 2px 16px rgba(60,0,97,0.06);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, translate 0.25s ease, scale 0.25s ease;
 }
-.card:hover {
-  box-shadow: var(--shadow-brand);
-  transform: translateY(-4px);
+
+.card,
+.glass-effect,
+.promo-float {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, translate 0.25s ease, scale 0.25s ease;
+  animation: surface-enter 0.45s ease-out both;
+}
+
+.card:hover,
+.card:focus-within,
+.glass-effect:hover,
+.glass-effect:focus-within,
+.promo-float:hover,
+.promo-float:focus-within {
+  border-color: rgba(0, 150, 160, 0.45) !important;
+  box-shadow: 0 16px 38px rgba(0, 90, 100, 0.14);
+  translate: 0 -4px;
+  scale: 1.01;
+}
+
+.card a svg,
+.glass-effect a svg {
+  transition: translate 0.2s ease;
+}
+
+.card a:hover svg,
+.glass-effect a:hover svg {
+  translate: 3px 0;
+}
+
+@keyframes surface-enter {
+  from {
+    opacity: 0;
+    translate: 0 10px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
 }
 
 /* --- Buttons --- */
@@ -204,12 +240,7 @@ a, button { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
   color: #102a2a !important;
   box-shadow: 0 18px 55px rgba(10, 35, 45, 0.2), 0 3px 10px rgba(10, 35, 45, 0.08) !important;
   backdrop-filter: blur(14px);
-  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
-}
-
-.promo-float:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 24px 60px rgba(10, 35, 45, 0.24), 0 4px 12px rgba(10, 35, 45, 0.1) !important;
+  transition: background-color 180ms ease, border-color 0.25s ease, box-shadow 0.25s ease, translate 0.25s ease, scale 0.25s ease;
 }
 
 .promo-content {
@@ -326,6 +357,37 @@ a, button { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
   color: #fff !important;
 }
 
+.promo-plan-link {
+  border-radius: 0.75rem !important;
+  background: var(--accent-cyan) !important;
+  color: #003f43 !important;
+  box-shadow: 0 5px 16px rgba(0, 180, 190, 0.2);
+  transition: background-color 180ms ease, box-shadow 180ms ease, translate 180ms ease;
+}
+
+.promo-plan-link:hover {
+  background: #00e0e6 !important;
+  box-shadow: 0 8px 22px rgba(0, 150, 160, 0.28);
+  translate: 0 -2px;
+}
+
+.promo-plan-link svg {
+  transition: translate 180ms ease;
+}
+
+.promo-plan-link:hover svg {
+  translate: 4px 0;
+}
+
+.promo-featured-badge {
+  background: var(--accent-cyan) !important;
+  color: #003f43 !important;
+}
+
+.promo-check-accent {
+  color: var(--accent-cyan-ink);
+}
+
 .promo-float-1:hover,
 .promo-float-1:active,
 .promo-float-1:focus-within {
@@ -342,6 +404,30 @@ a, button { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
 .promo-float-3:active,
 .promo-float-3:focus-within {
   background: #fbf9fd !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .glass-effect,
+  .promo-float,
+  .promo-plan-link,
+  .mobile-bottom-bar-link {
+    scroll-behavior: auto;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .card:hover,
+  .card:focus-within,
+  .glass-effect:hover,
+  .glass-effect:focus-within,
+  .promo-float:hover,
+  .promo-float:focus-within,
+  .promo-plan-link:hover {
+    translate: none;
+    scale: 1;
+  }
 }
 
 .promo-float-1 {
@@ -545,6 +631,12 @@ h3 span {
 }
 
 .promo-card-2 {
+  --promo-accent: var(--accent-cyan-ink);
+}
+
+.promo-card-1,
+.promo-card-2,
+.promo-card-3 {
   --promo-accent: var(--accent-cyan-ink);
 }
 
