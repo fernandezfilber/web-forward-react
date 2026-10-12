@@ -58,13 +58,13 @@ body {
   border: 1px solid var(--border);
   border-radius: 1.25rem;
   box-shadow: 0 2px 16px rgba(19,45,53,0.06);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, translate 0.25s ease, scale 0.25s ease;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, translate 0.4s ease, scale 0.4s ease;
 }
 
 .card,
 .glass-effect,
 .promo-float {
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, translate 0.25s ease, scale 0.25s ease;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, translate 0.4s ease, scale 0.4s ease;
 }
 
 .card:focus-within,
@@ -78,7 +78,7 @@ body {
 
 .card a svg,
 .glass-effect a svg {
-  transition: translate 0.2s ease;
+  transition: translate 0.32s ease;
 }
 
 @media (hover: hover) {
@@ -100,7 +100,7 @@ body {
 .scroll-reveal {
   opacity: 0;
   translate: 0 18px;
-  transition: opacity 0.55s ease, translate 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: opacity 0.9s ease, translate 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .scroll-reveal.is-revealed {
@@ -128,7 +128,7 @@ body {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   font-size: 0.8rem;
-  transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
+  transition: background 0.4s, box-shadow 0.4s, transform 0.35s;
   box-shadow: 0 4px 16px rgba(12,112,119,0.22);
   display: inline-flex;
   align-items: center;
@@ -149,7 +149,7 @@ body {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   font-size: 0.8rem;
-  transition: all 0.25s;
+  transition: all 0.4s;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -181,7 +181,7 @@ body {
 ::-webkit-scrollbar-thumb { background: #9bcfce; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--brand); }
 
-a, button { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
+a, button { transition: all 0.35s cubic-bezier(0.4,0,0.2,1); }
 
 /* helpers */
 .text-brand  { color: var(--brand); }
@@ -232,7 +232,7 @@ a, button { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
   font-weight: 600;
   line-height: 1;
   text-decoration: none;
-  transition: color 160ms ease, background-color 160ms ease;
+  transition: color 280ms ease, background-color 280ms ease;
 }
 
 .mobile-bottom-bar-link.is-active {
@@ -271,7 +271,7 @@ a, button { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
   color: #102a2a !important;
   box-shadow: 0 18px 55px rgba(10, 35, 45, 0.2), 0 3px 10px rgba(10, 35, 45, 0.08) !important;
   backdrop-filter: blur(14px);
-  transition: background-color 180ms ease, border-color 0.25s ease, box-shadow 0.25s ease, translate 0.25s ease, scale 0.25s ease;
+  transition: background-color 280ms ease, border-color 0.4s ease, box-shadow 0.4s ease, translate 0.4s ease, scale 0.4s ease;
 }
 
 .promo-content {
@@ -359,7 +359,7 @@ a, button { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
   font-weight: 800;
   letter-spacing: 0.045em;
   text-transform: uppercase;
-  transition: filter 160ms ease, transform 160ms ease;
+  transition: filter 280ms ease, transform 280ms ease;
 }
 
 .promo-cta:hover {
@@ -380,7 +380,7 @@ a, button { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
   border-radius: 50% !important;
   background: #f1f6f4 !important;
   color: #31534d !important;
-  transition: background-color 160ms ease, color 160ms ease;
+  transition: background-color 280ms ease, color 280ms ease;
 }
 
 .promo-close:hover {
@@ -393,7 +393,7 @@ a, button { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
   background: var(--accent-cyan) !important;
   color: #003f43 !important;
   box-shadow: 0 5px 16px rgba(0, 180, 190, 0.2);
-  transition: background-color 180ms ease, box-shadow 180ms ease, translate 180ms ease;
+  transition: background-color 300ms ease, box-shadow 300ms ease, translate 300ms ease;
 }
 
 .promo-plan-link:hover {
@@ -403,7 +403,7 @@ a, button { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
 }
 
 .promo-plan-link svg {
-  transition: translate 180ms ease;
+  transition: translate 300ms ease;
 }
 
 .promo-plan-link:hover svg {

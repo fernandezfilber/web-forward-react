@@ -4,24 +4,24 @@ import { Plus, Minus, MessageCircle } from 'lucide-react';
 
 const faqs = [
   {
-    question: '¿Cuánto tiempo tarda la instalación del servicio?',
-    answer: 'La instalación se realiza en un plazo máximo de 24 horas hábiles después de confirmada tu solicitud y validada la cobertura en tu zona.',
+    question: 'ï¿½Cuï¿½nto tiempo tarda la instalaciï¿½n del servicio?',
+    answer: 'La instalaciï¿½n se realiza en un plazo mï¿½ximo de 24 horas hï¿½biles despuï¿½s de confirmada tu solicitud y validada la cobertura en tu zona.',
   },
   {
-    question: '¿Necesito comprar un router especial para la fibra óptica?',
-    answer: 'No, nosotros te proporcionamos en calidad de préstamo (comodato) un router ONT de última generación (WiFi Dual Band / WiFi 6 dependiendo del plan) sin costo adicional.',
+    question: 'ï¿½Necesito comprar un router especial para la fibra ï¿½ptica?',
+    answer: 'No, nosotros te proporcionamos en calidad de prï¿½stamo (comodato) un router ONT de ï¿½ltima generaciï¿½n (WiFi Dual Band / WiFi 6 dependiendo del plan) sin costo adicional.',
   },
   {
-    question: '¿Puedo cambiar mi plan de internet más adelante?',
-    answer: '¡Por supuesto! Puedes solicitar una mejora de plan (upgrade) en cualquier momento comunicándote con nuestro soporte. El cambio se aplica en tu próximo ciclo de facturación.',
+    question: 'ï¿½Puedo cambiar mi plan de internet mï¿½s adelante?',
+    answer: 'ï¿½Por supuesto! Puedes solicitar una mejora de plan (upgrade) en cualquier momento comunicï¿½ndote con nuestro soporte. El cambio se aplica en tu prï¿½ximo ciclo de facturaciï¿½n.',
   },
   {
-    question: '¿Qué diferencia hay entre la TV Digital y la TV por cable tradicional?',
-    answer: 'Nuestra TV Digital transmite la señal a través de la misma fibra óptica, ofreciendo calidad de imagen 4K/HD sin interferencias por clima, además de funciones interactivas y mayor estabilidad.',
+    question: 'ï¿½Quï¿½ diferencia hay entre la TV Digital y la TV por cable tradicional?',
+    answer: 'Nuestra TV Digital transmite la seï¿½al a travï¿½s de la misma fibra ï¿½ptica, ofreciendo calidad de imagen 4K/HD sin interferencias por clima, ademï¿½s de funciones interactivas y mayor estabilidad.',
   },
   {
-    question: '¿Qué hago si tengo problemas con mi conexión?',
-    answer: 'Contamos con soporte técnico 24/7. Puedes contactarnos por WhatsApp al +51 900 970 806 y nuestro equipo te ayudará a resolver cualquier inconveniente rápidamente.',
+    question: 'ï¿½Quï¿½ hago si tengo problemas con mi conexiï¿½n?',
+    answer: 'Contamos con soporte tï¿½cnico 24/7. Puedes contactarnos por WhatsApp al +51 900 970 806 y nuestro equipo te ayudarï¿½ a resolver cualquier inconveniente rï¿½pidamente.',
   },
 ];
 
@@ -41,7 +41,7 @@ export default function FAQ() {
             Preguntas <span className="text-[#0047FF]">Frecuentes</span>
           </h2>
           <p className="text-gray-500 text-sm md:text-base">
-            Encuentra respuestas rápidas a las dudas más comunes sobre nuestro servicio.
+            Encuentra respuestas rï¿½pidas a las dudas mï¿½s comunes sobre nuestro servicio.
           </p>
         </div>
 
@@ -83,12 +83,16 @@ export default function FAQ() {
         {/* CTA a IA */}
         <div className="bg-[#0047FF]/5 border border-[#0047FF]/20 rounded-2xl p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
           <div>
-            <h3 className="text-lg font-black text-gray-900 mb-2">¿Tienes más dudas?</h3>
+            <h3 className="text-lg font-black text-gray-900 mb-2">ï¿½Tienes mï¿½s dudas?</h3>
             <p className="text-gray-600 text-sm">
-              Prueba <span className="font-bold text-[#0047FF]">Forward AI</span>. Nuestro asistente inteligente está listo para responder cualquier pregunta sobre planes, cobertura o soporte técnico al instante.
+              Prueba <span className="font-bold text-[#0047FF]">Forward AI</span>. Nuestro asistente inteligente estï¿½ listo para responder cualquier pregunta sobre planes, cobertura o soporte tï¿½cnico al instante.
             </p>
           </div>
-          <button className="shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-[#0047FF] text-white rounded-xl font-bold text-sm hover:bg-[#0038cc] transition-colors shadow-lg shadow-[#0047FF]/20">
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event('open-chatbot'))}
+            className="shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-[#0047FF] text-white rounded-xl font-bold text-sm hover:bg-[#0038cc] transition-colors shadow-lg shadow-[#0047FF]/20"
+          >
             <MessageCircle size={18} />
             Consultar a Forward AI
           </button>
