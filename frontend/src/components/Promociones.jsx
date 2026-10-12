@@ -7,7 +7,7 @@ const PROMOS = [
     id: 1,
     badge: 'Sin costo adicional',
     title: 'Instalacion\nGRATIS',
-    desc: 'Olvídate del costo de instalacion. Tecnicos certificados llegan a tu hogar sin cobro extra.',
+    desc: 'Olvï¿½date del costo de instalacion. Tecnicos certificados llegan a tu hogar sin cobro extra.',
     items: ['Instalacion de fibra optica', 'Configuracion de router', 'Prueba de velocidad incluida'],
     accent: '#0047FF',
   },
@@ -15,8 +15,8 @@ const PROMOS = [
     id: 2, featured: true,
     badge: 'Oferta de bienvenida',
     title: 'Primer mes a\nS/ 35',
-    desc: 'Disfruta tu primer mes de fibra óptica por solo S/ 35, sin costos ocultos.',
-    items: ['Aplica a todos los planes', 'Instalación gratis', 'Velocidad simetrica'],
+    desc: 'Disfruta tu primer mes de fibra ï¿½ptica por solo S/ 35, sin costos ocultos.',
+    items: ['Aplica a todos los planes', 'Instalaciï¿½n gratis', 'Velocidad simetrica'],
     accent: '#0038cc',
   },
   {
@@ -58,7 +58,7 @@ function useCountdown() {
 function CountdownBox({ value, label }) {
   return (
     <div className="flex flex-col items-center">
-      <div className="w-14 h-14 bg-[#0047FF] rounded-xl flex items-center justify-center shadow">
+      <div className="promo-countdown-accent w-14 h-14 bg-[#0047FF] rounded-xl flex items-center justify-center shadow">
         <span className="text-2xl font-black text-white tabular-nums">{String(value).padStart(2, '0')}</span>
       </div>
       <span className="text-gray-500 text-xs mt-1.5 uppercase tracking-widest font-medium">{label}</span>

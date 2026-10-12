@@ -524,6 +524,33 @@ h3 span {
 
 :root {
   --accent-cyan: #00ffff;
+  --accent-cyan-ink: #006d73;
+  --accent-cyan-soft: rgba(0, 255, 255, 0.14);
+}
+
+.section-label {
+  border-color: rgba(0, 170, 178, 0.28);
+  background: var(--accent-cyan-soft);
+  color: var(--accent-cyan-ink);
+}
+
+.service-icon-accent,
+.promo-countdown-accent {
+  background-color: var(--accent-cyan) !important;
+}
+
+.service-icon-accent svg,
+.promo-countdown-accent span {
+  color: #003f43 !important;
+}
+
+.promo-card-2 {
+  --promo-accent: var(--accent-cyan-ink);
+}
+
+.mobile-bottom-bar-link.is-active {
+  background: var(--accent-cyan-soft);
+  color: var(--accent-cyan-ink);
 }
 
 .site-navbar,

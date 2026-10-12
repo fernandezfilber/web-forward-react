@@ -39,7 +39,7 @@ export default function Services() {
               transition={{ delay: i * 0.08, duration: 0.5 }}
               className="card p-7 flex flex-col gap-4 group"
             >
-              <div className="w-12 h-12 rounded-xl bg-[#0047FF] flex items-center justify-center shrink-0">
+              <div className="service-icon-accent w-12 h-12 rounded-xl bg-[#0047FF] flex items-center justify-center shrink-0">
                 <s.icon size={22} className="text-white" />
               </div>
               <div>
