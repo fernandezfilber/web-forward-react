@@ -368,6 +368,19 @@ a, button { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
   font-size: 1rem;
 }
 
+#hero .btn-outline {
+  border-color: #e11d48;
+  background: #e11d48;
+  color: #fff;
+  box-shadow: 0 5px 18px rgba(225, 29, 72, 0.3);
+}
+
+#hero .btn-outline:hover {
+  border-color: #be123c;
+  background: #be123c;
+  box-shadow: 0 7px 22px rgba(190, 18, 60, 0.36);
+}
+
 @media (max-width: 767px) {
   .hero-overlay {
     background: rgba(255, 255, 255, 0.72);
