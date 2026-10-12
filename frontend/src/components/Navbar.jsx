@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, LogIn, LogOut, Shield, User, ChevronDown } from 'lucide-react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -143,7 +143,7 @@ export default function Navbar() {
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? 'Cerrar menu' : 'Abrir menu'}
             aria-expanded={isOpen}
-            className="md:hidden p-2.5 rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
+            className="md:hidden p-2.5 rounded-xl bg-white/70 text-gray-700 hover:bg-white transition-colors"
           >
             {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>

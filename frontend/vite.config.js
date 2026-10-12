@@ -12,8 +12,8 @@ export default defineConfig({
         name:             'Forward Vision',
         short_name:       'ForwardVision',
         description:      'Internet de fibra óptica de alta velocidad',
-        theme_color:      '#22d3ee',
-        background_color: '#030712',
+        theme_color:      '#e8f7f5',
+        background_color: '#ffffff',
         display:          'standalone',
         start_url:        '/',
         icons: [

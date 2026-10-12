@@ -33,13 +33,13 @@ export default {
           800: '#3d3d3d',
           900: '#292929',
         },
-        // Mantener cyan/magenta como alias a negro para no romper clases existentes
+        // Turquesa para acentos y coral reservado para detalles secundarios.
         cyan: {
-          400: '#111111',
-          500: '#000000',
+          400: '#20c5c0',
+          500: '#0c7077',
         },
         magenta: {
-          500: '#333333',
+          500: '#d97764',
         },
       },
       animation: {

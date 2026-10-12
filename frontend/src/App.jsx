@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect } from 'react'
+import { Suspense, lazy, useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 
@@ -85,11 +85,64 @@ function AdminLoader() {
 }
 
 // Shared wrapper for public pages (Navbar + Footer + background)
+const REVEAL_SELECTOR = 'h1, h2, h3, p, .card, .glass-effect, article'
+
+function useScrollReveal(contentRef) {
+  useEffect(() => {
+    const content = contentRef.current
+    if (!content || !('IntersectionObserver' in window)) return undefined
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('is-revealed')
+        observer.unobserve(entry.target)
+      })
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -5% 0px',
+    })
+
+    const observeElements = (node) => {
+      if (!(node instanceof Element)) return
+
+      const elements = []
+      if (node.matches(REVEAL_SELECTOR)) elements.push(node)
+      elements.push(...node.querySelectorAll(REVEAL_SELECTOR))
+
+      elements.forEach((element) => {
+        if (element.classList.contains('scroll-reveal')) return
+        element.classList.add('scroll-reveal')
+        observer.observe(element)
+      })
+    }
+
+    observeElements(content)
+
+    const mutations = new MutationObserver((records) => {
+      records.forEach((record) => {
+        record.addedNodes.forEach(observeElements)
+      })
+    })
+    mutations.observe(content, { childList: true, subtree: true })
+
+    return () => {
+      observer.disconnect()
+      mutations.disconnect()
+    }
+  }, [contentRef])
+}
+
 function WithNav({ children }) {
+  const contentRef = useRef(null)
+  useScrollReveal(contentRef)
+
   return (
-    <div className="min-h-screen bg-white relative pb-16 md:pb-0">
+    <div className="min-h-screen bg-white relative pb-[calc(4.25rem+env(safe-area-inset-bottom))] md:pb-0">
       <Navbar />
-      {children}
+      <div ref={contentRef} className="contents">
+        {children}
+      </div>
       <FloatingPromoBanner />
       <WhatsAppWidget />
       <ChatbotWidget />
