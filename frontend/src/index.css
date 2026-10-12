@@ -149,25 +149,151 @@ a, button { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
 
 .promo-float {
   width: clamp(300px, 28vw, 380px);
-  transition: background-color 180ms ease, box-shadow 180ms ease;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.97) !important;
+  color: #102a2a !important;
+  box-shadow: 0 18px 55px rgba(10, 35, 45, 0.2), 0 3px 10px rgba(10, 35, 45, 0.08) !important;
+  backdrop-filter: blur(14px);
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.promo-float:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 60px rgba(10, 35, 45, 0.24), 0 4px 12px rgba(10, 35, 45, 0.1) !important;
+}
+
+.promo-content {
+  position: relative;
+  padding: 1.15rem 1.25rem 1.1rem;
+  animation: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+.promo-content::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: var(--promo-accent, #168b69);
+  content: "";
+}
+
+.promo-card-1 { --promo-accent: #bd8d24; }
+.promo-card-2 { --promo-accent: #168b69; }
+.promo-card-3 { --promo-accent: #7651a1; }
+
+.promo-heading {
+  padding-right: 2rem;
+}
+
+.promo-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--promo-accent, #168b69) !important;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.promo-title {
+  margin-top: 0.4rem;
+  color: #143632 !important;
+  font-size: 1.4rem;
+  font-weight: 850;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.promo-detail {
+  margin-top: 0.8rem;
+  color: #405b58 !important;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.promo-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(20, 54, 50, 0.12);
+}
+
+.promo-value {
+  color: #143632 !important;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.promo-cta {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border-radius: 9999px !important;
+  background: var(--promo-accent, #168b69) !important;
+  padding: 0.7rem 0.95rem;
+  color: #fff !important;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  transition: filter 160ms ease, transform 160ms ease;
+}
+
+.promo-cta:hover {
+  filter: brightness(0.9);
+  transform: translateX(2px);
+}
+
+.promo-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(20, 54, 50, 0.1) !important;
+  border-radius: 50% !important;
+  background: #f1f6f4 !important;
+  color: #31534d !important;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.promo-close:hover {
+  background: #143632 !important;
+  color: #fff !important;
 }
 
 .promo-float-1:hover,
 .promo-float-1:active,
 .promo-float-1:focus-within {
-  background: #fff9e6 !important;
+  background: #fffdf8 !important;
 }
 
 .promo-float-2:hover,
 .promo-float-2:active,
 .promo-float-2:focus-within {
-  background: #effaf1 !important;
+  background: #f8fcfa !important;
 }
 
 .promo-float-3:hover,
 .promo-float-3:active,
 .promo-float-3:focus-within {
-  background: #f7f1fb !important;
+  background: #fbf9fd !important;
 }
 
 .promo-float-1 {
@@ -190,6 +316,27 @@ a, button { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
     right: 0.5rem;
     left: 0.5rem;
     width: calc(100vw - 1rem);
+  }
+
+  .promo-content {
+    padding: 1rem 1rem 0.95rem 1.15rem;
+  }
+
+  .promo-title {
+    font-size: 1.25rem;
+  }
+
+  .promo-detail {
+    font-size: 0.9rem;
+  }
+
+  .promo-value {
+    font-size: 0.7rem;
+  }
+
+  .promo-cta {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.7rem;
   }
 
   .promo-float-1 {
@@ -378,52 +525,6 @@ h3 span {
 .site-footer a[class*="bg-white"] {
   background: #000 !important;
   color: #fff !important;
-}
-
-.promo-float {
-  background: #ffffff !important;
-  border: none !important;
-  color: #000 !important;
-  box-shadow: 0 16px 45px rgba(0, 255, 255, 0.28) !important;
-}
-
-.promo-float .text-gray-500,
-.promo-float .text-gray-600 {
-  color: #123333 !important;
-}
-
-.promo-float .border-gray-200 {
-  border-color: rgba(0, 0, 0, 0.3) !important;
-}
-
-.promo-content {
-  animation: promo-heartbeat 2.4s ease-in-out infinite;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: geometricPrecision;
-}
-
-.promo-float-1 h3 {
-  color: #8a6d1d !important;
-}
-
-.promo-float-1 .flex.h-9 {
-  background: #8a6d1d !important;
-}
-
-.promo-float-2 h3 {
-  color: #3f6b4a !important;
-}
-
-.promo-float-2 .flex.h-9 {
-  background: #3f6b4a !important;
-}
-
-.promo-float-3 h3 {
-  color: #66507a !important;
-}
-
-.promo-float-3 .flex.h-9 {
-  background: #66507a !important;
 }
 
 @keyframes promo-heartbeat {
