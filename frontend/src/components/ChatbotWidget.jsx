@@ -112,7 +112,7 @@ export default function ChatbotWidget() {
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Consulta con Forward IA"
         title="Consulta con Forward IA"
-        className="ai-widget-button fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex min-h-14 items-center gap-3 overflow-hidden border-2 border-black bg-white px-3 py-2 shadow-[0_0_35px_rgba(0,0,0,0.28)] pulse-heartbeat"
+        className="ai-widget-button fixed bottom-[calc(5rem+env(safe-area-inset-bottom))] right-4 z-50 flex min-h-14 items-center gap-3 overflow-hidden border-2 border-black bg-white px-3 py-2 shadow-[0_0_35px_rgba(0,0,0,0.28)] pulse-heartbeat md:bottom-6 md:right-6"
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.95 }}
       >
@@ -129,7 +129,7 @@ export default function ChatbotWidget() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed bottom-24 right-6 w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200 z-50 flex flex-col"
+            className="fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom))] left-3 right-3 z-50 flex max-h-[calc(100dvh-6rem-env(safe-area-inset-bottom))] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl md:bottom-24 md:left-auto md:right-6 md:w-full md:max-w-sm"
             style={{ height: '560px' }}
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}

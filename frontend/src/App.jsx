@@ -13,6 +13,7 @@ import ChatbotWidget  from './components/ChatbotWidget'
 import WhatsAppWidget from './components/WhatsAppWidget'
 import FloatingPromoBanner from './components/FloatingPromoBanner'
 import Footer         from './components/Footer'
+import MobileBottomBar from './components/MobileBottomBar'
 
 // Public Pages (eager — main bundle)
 import Inicio     from './pages/Inicio'
@@ -86,13 +87,14 @@ function AdminLoader() {
 // Shared wrapper for public pages (Navbar + Footer + background)
 function WithNav({ children }) {
   return (
-    <div className="min-h-screen bg-white relative">
+    <div className="min-h-screen bg-white relative pb-16 md:pb-0">
       <Navbar />
       {children}
       <FloatingPromoBanner />
       <WhatsAppWidget />
       <ChatbotWidget />
       <Footer />
+      <MobileBottomBar />
     </div>
   )
 }

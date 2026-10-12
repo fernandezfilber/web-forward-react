@@ -1,37 +1,10 @@
 import React, { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, Play, Maximize2, MessageSquare, LogIn, Loader2, ThumbsUp, ThumbsDown, Send, ChevronDown, Home, Video, Users, Bell, User } from "lucide-react"
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import { X, Play, Maximize2, MessageSquare, LogIn, Loader2, ThumbsUp, ThumbsDown, Send, ChevronDown } from "lucide-react"
+import { Link, useLocation } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import api from "../api/client"
 import StarRating from "../components/StarRating"
-
-/* -- Barra inferior para mobile -- */
-function MobileBottomBar() {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const items = [
-    { icon: Home,         label: "Inicio",      path: "/" },
-    { icon: Video,        label: "Planes",       path: "/planes" },
-    { icon: Users,        label: "Nosotros",     path: "/nosotros" },
-    { icon: Bell,         label: "Soporte",      path: "/soporte" },
-    { icon: User,         label: "Perfil",       path: "/perfil" },
-  ]
-  return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white border-t border-gray-200 flex">
-      {items.map(({ icon: Icon, label, path }) => {
-        const active = location.pathname === path
-        return (
-          <button key={path} onClick={() => navigate(path)}
-            className={`flex-1 flex flex-col items-center py-2 gap-0.5 transition-colors ${active ? "text-[#0047FF]" : "text-gray-400"}`}>
-            <Icon size={22} strokeWidth={active ? 2.2 : 1.8} />
-            <span className="text-[9px] font-semibold">{label}</span>
-          </button>
-        )
-      })}
-    </div>
-  )
-}
 
 /* -- Formulario de comentario / respuesta -- */
 function CommentInput({ placeholder, onSubmit, loading }) {
@@ -325,7 +298,7 @@ export default function Galeria() {
         </div>
       </div>
 
-      {/* Filtros — barra horizontal scrollable estilo Facebook */}
+      {/* Filtros ï¿½ barra horizontal scrollable estilo Facebook */}
       <div className="sticky top-[60px] sm:top-[68px] z-30 bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex gap-1 overflow-x-auto py-2 no-scrollbar">
@@ -405,8 +378,6 @@ export default function Galeria() {
         )}
       </AnimatePresence>
 
-      {/* Barra inferior mobile */}
-      <MobileBottomBar />
     </div>
   )
 }
