@@ -112,11 +112,18 @@ export default function ChatbotWidget() {
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Consulta con Forward IA"
         title="Consulta con Forward IA"
-        className="ai-widget-button fixed bottom-8 right-8 z-50 flex h-24 w-24 items-center justify-center overflow-hidden border-4 border-black bg-white p-4 shadow-[0_0_35px_rgba(0,0,0,0.28)] pulse-heartbeat md:h-28 md:w-28"
-        whileHover={{ scale: 1.1, rotate: 5 }}
+        className="ai-widget-button fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex min-h-14 items-center gap-3 overflow-hidden border-2 border-black bg-white px-3 py-2 shadow-[0_0_35px_rgba(0,0,0,0.28)] pulse-heartbeat"
+        whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.95 }}
       >
-        {isOpen ? <X size={64} className="text-cyan-500" /> : <img src={icono} alt="forward AI" className="ai-widget-image h-full w-full object-cover object-center" />}
+        {isOpen ? (
+          <X size={28} className="shrink-0 text-cyan-500" />
+        ) : (
+          <>
+            <img src={icono} alt="" className="ai-widget-image h-10 w-10 shrink-0 object-cover object-center" />
+            <span className="whitespace-nowrap text-sm font-bold text-black sm:text-base">Asistente IA</span>
+          </>
+        )}
       </motion.button>
 
       <AnimatePresence>

@@ -40,25 +40,25 @@ export default function Hero() {
 
         <motion.span
           variants={fadeUp(0)} initial="hidden" animate="visible"
-          className="inline-block text-[11px] font-black tracking-[0.18em] uppercase bg-black/10 border border-black/20 text-black px-4 py-1.5 rounded-full mb-6"
+          className="inline-block text-sm font-black tracking-[0.14em] uppercase bg-white/75 border border-black/20 text-black px-4 py-2 rounded-full mb-6"
         >
           Nuevos Planes GIGA 2026
         </motion.span>
 
         <motion.h1
           variants={fadeUp(1)} initial="hidden" animate="visible"
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-black leading-[1.06] tracking-tight max-w-3xl mb-6"
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-7xl font-black text-black leading-[1.06] tracking-tight max-w-3xl mb-6"
         >
           Internet Fibra Optica
           <br />
-          <span className="text-black/70">y Cable TV</span>
+          <span className="text-black">y Cable TV</span>
           <br />
           para tu Hogar
         </motion.h1>
 
         <motion.p
           variants={fadeUp(2)} initial="hidden" animate="visible"
-          className="text-base sm:text-lg text-black/70 leading-relaxed max-w-lg mb-10 font-light"
+          className="text-xl sm:text-2xl text-black leading-relaxed max-w-xl mb-10 font-semibold"
         >
           Velocidad simetrica real desde 250 Mbps hasta 1 Gbps. Television digital con mas de 100 canales HD. Sin cortes, sin excusas.
         </motion.p>
@@ -84,7 +84,7 @@ export default function Hero() {
           {stats.map((s) => (
             <div key={s.label}>
               <p className="text-2xl sm:text-3xl font-black text-black mb-1">{s.value}</p>
-              <p className="text-[11px] font-semibold tracking-widest uppercase text-black/50">{s.label}</p>
+              <p className="text-sm sm:text-base font-bold tracking-wide uppercase text-black/85">{s.label}</p>
             </div>
           ))}
         </motion.div>
