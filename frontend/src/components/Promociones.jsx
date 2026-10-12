@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight, CheckCircle2, Timer } from 'lucide-react'
 
 const PROMOS = [
@@ -69,6 +69,7 @@ function CountdownBox({ value, label }) {
 export default function Promociones() {
   const { days, hours, minutes, seconds } = useCountdown()
   const expiry = getExpiry()
+  const shouldReduceMotion = useReducedMotion()
 
   return (
     <section id="promociones" className="py-20 md:py-28 bg-white">
@@ -109,14 +110,20 @@ export default function Promociones() {
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-7">
-          {PROMOS.map((p) => {
+          {PROMOS.map((p, index) => {
+            const slideOffset = shouldReduceMotion ? 0 : (index % 2 === 0 ? -72 : 72)
+
             return (
               <motion.div
                 key={p.id}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                initial={{ opacity: 0, x: slideOffset }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: shouldReduceMotion ? 0.01 : 0.9,
+                  delay: shouldReduceMotion ? 0 : index * 0.16,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
                 className={`card relative overflow-hidden flex flex-col ${p.featured ? 'ring-2 ring-[#0047FF] shadow-lg' : ''}`}
               >
                 {p.featured && (
