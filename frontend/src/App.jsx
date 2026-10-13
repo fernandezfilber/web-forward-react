@@ -45,9 +45,9 @@ function ScrollToTop() {
 }
 
 const seoByPath = {
-  '/': { title: 'Forward Vision | Internet Fibra Óptica + Cable', description: 'Contrata internet de fibra óptica simétrica, TV digital y planes Internet + Cable para tu hogar con Forward Vision.' },
+  '/': { title: 'Internet por Fibra Óptica en Lima Este | Forward Vision', description: 'Internet por fibra óptica y TV digital en Lima Este. Consulta cobertura en Ate, Santa Anita, Chosica, Carapongo, Santa Clara y zonas cercanas.' },
   '/planes': { title: 'Planes de Internet Fibra Óptica | Forward Vision', description: 'Compara planes de internet fibra óptica desde 250 Mbps hasta 1 Giga, con TV digital y soporte para tu hogar.' },
-  '/cobertura': { title: 'Cobertura de Internet Fibra Óptica | Forward Vision', description: 'Consulta la cobertura de internet fibra óptica Forward Vision y verifica la disponibilidad en tu dirección.' },
+  '/cobertura': { title: 'Cobertura de Internet en Lima Este | Forward Vision', description: 'Consulta internet por fibra óptica en Carapongo, Chosica, Ate, Santa Clara, Huaycán, Santa Anita, Jicamarca y zonas cercanas. Verifica tu dirección.' },
   '/nosotros': { title: 'Nosotros | Forward Vision', description: 'Conoce a Forward Vision, proveedor de internet fibra óptica y entretenimiento digital en Lima Este.' },
   '/soporte': { title: 'Soporte de Internet y Cable | Forward Vision', description: 'Encuentra ayuda y soporte técnico para tus servicios de internet fibra óptica y TV digital Forward Vision.' },
   '/galeria': { title: 'Galería | Forward Vision', description: 'Explora la galería de Forward Vision y conoce nuestra tecnología de conectividad y entretenimiento.' },

@@ -12,24 +12,24 @@ export default function Inicio() {
   return (
     <>
       <Helmet>
-        <title>Forward Vision | Internet Fibra Óptica Giga y TV Digital</title>
+        <title>Internet por Fibra Óptica en Lima Este | Forward Vision</title>
 
-        <meta name="description" content="Forward Vision ofrece el internet de fibra óptica más rápido de la región. Velocidad simétrica, baja latencia para gaming y TV digital 4K. ¡Contrata hoy!" />
-        <meta name="keywords" content="internet fibra optica, velocidad giga, tv digital, internet simetrico, forward vision, mejor internet" />
+        <meta name="description" content="Internet por fibra óptica y TV digital en Lima Este. Consulta cobertura en Ate, Santa Anita, Chosica, Carapongo, Santa Clara y zonas cercanas." />
+        <meta name="keywords" content="internet fibra óptica Lima Este, internet Ate, internet Santa Anita, internet Chosica, internet Carapongo, internet Santa Clara, Forward Vision" />
         <link rel="canonical" href="https://forwardvision.cloud/" />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://forwardvision.cloud/" />
-        <meta property="og:title" content="Forward Vision | Internet Fibra Óptica Giga" />
-        <meta property="og:description" content="Conectividad total con fibra óptica real. Planes Giga y TV Digital para tu hogar." />
+        <meta property="og:title" content="Internet por Fibra Óptica en Lima Este | Forward Vision" />
+        <meta property="og:description" content="Consulta cobertura de internet por fibra óptica en Ate, Santa Anita, Chosica, Carapongo, Santa Clara y zonas cercanas." />
         <meta property="og:image" content="https://forwardvision.cloud/og-image.png" />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://forwardvision.cloud/" />
-        <meta property="twitter:title" content="Forward Vision | Internet Fibra Óptica Giga" />
-        <meta property="twitter:description" content="Conectividad total con fibra óptica real. Planes Giga y TV Digital para tu hogar." />
+        <meta property="twitter:title" content="Internet por Fibra Óptica en Lima Este | Forward Vision" />
+        <meta property="twitter:description" content="Consulta cobertura de internet por fibra óptica en Ate, Santa Anita, Chosica, Carapongo, Santa Clara y zonas cercanas." />
         <meta property="twitter:image" content="https://forwardvision.cloud/og-image.png" />
       </Helmet>
       <motion.main

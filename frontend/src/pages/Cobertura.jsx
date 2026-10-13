@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MapPin, Check, X, Search, Loader2, Zap, ArrowRight, ShieldCheck } from 'lucide-react'
 
@@ -257,6 +257,28 @@ export default function Cobertura() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="px-4 pb-24">
+        <div className="max-w-4xl mx-auto rounded-3xl border border-white/10 bg-white/[0.02] p-8 md:p-12">
+          <h2 className="text-2xl md:text-3xl font-black mb-4">
+            Internet por fibra óptica en Lima Este
+          </h2>
+          <p className="text-gray-400 leading-relaxed mb-6">
+            Consulta la disponibilidad de internet para tu hogar o negocio en Carapongo,
+            Chosica, Ate, Santa Clara, Campiña, Nievería, Huaycán, San Antonio, Santa Anita,
+            Ceres, Cerro Camote, Jicamarca y otros puntos de Lima. La factibilidad puede
+            variar según la calle y el número; verifica tu dirección antes de contratar.
+          </p>
+          <a
+            href={`https://wa.me/51900970806?text=${encodeURIComponent('Hola, quisiera consultar la cobertura de internet por fibra óptica en mi zona de Lima Este.')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
+          >
+            Consultar cobertura por WhatsApp <ArrowRight size={18} />
+          </a>
         </div>
       </section>
 
