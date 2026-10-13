@@ -527,10 +527,10 @@ a, button { transition: all 0.35s cubic-bezier(0.4,0,0.2,1); }
 .hero-overlay {
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.88) 0%,
-    rgba(255, 255, 255, 0.78) 42%,
-    rgba(255, 255, 255, 0.3) 76%,
-    rgba(255, 255, 255, 0.12) 100%
+    rgba(255, 255, 255, 0.68) 0%,
+    rgba(255, 255, 255, 0.48) 42%,
+    rgba(255, 255, 255, 0.08) 76%,
+    rgba(255, 255, 255, 0.02) 100%
   );
 }
 
@@ -567,7 +567,7 @@ a, button { transition: all 0.35s cubic-bezier(0.4,0,0.2,1); }
   }
 
   .hero-overlay {
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.48);
   }
 
   .promo-float {
